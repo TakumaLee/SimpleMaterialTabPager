@@ -15,11 +15,12 @@ import android.widget.FrameLayout;
 import com.astuetz.PagerSlidingTabStrip;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.takumalee.simplematerialdesign.R;
-
-import java.util.List;
+import com.takumalee.simplematerialdesign.manager.MaterialFragmentManager;
 
 
 public class SimpleMaterialPagerDrawerActivity extends ActionBarActivity {
+
+    private MaterialFragmentManager mFManager = new MaterialFragmentManager();
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
@@ -50,23 +51,31 @@ public class SimpleMaterialPagerDrawerActivity extends ActionBarActivity {
         systemBarTintManager.setStatusBarTintEnabled(true);
 
         drawerLayout.setStatusBarBackgroundColor(0);
+        changeColor(getResources().getColor(R.color.green));
+
     }
 
-    protected void setMaterialPagerAdapter(String[] strings, List<Fragment> fragmentList) {
+    protected void createNewPage(String title, Fragment fragment) {
+        mFManager.createNewInstance(title, fragment);
+    }
+
+    protected void setMaterialPagerAdapter() {
         adapter = new SimpleMaterialPagerAdapter(getSupportFragmentManager());
-        adapter.setTitleName(strings);
-        adapter.setFragmentList(fragmentList);
+        adapter.setmPagerEntities(mFManager.getEntities());
         viewPager.setAdapter(adapter);
 
 //        LinearLayout.LayoutParams tabParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, Math.round(48 * getResources().getDisplayMetrics().density));
         tabs.setShouldExpand(true);
         tabs.setViewPager(viewPager);
 //        tabs.setLayoutParams(tabParams);
-
-        changeColor(getResources().getColor(R.color.green));
     }
 
-    private void changeColor(int newColor) {
+    public void changeTextColor(int newColor) {
+        toolbar.setTitleTextColor(newColor);
+        tabs.setTextColor(newColor);
+    }
+
+    public void changeColor(int newColor) {
         tabs.setBackgroundColor(newColor);
         systemBarTintManager.setTintColor(newColor);
         // change ActionBar color just if an ActionBar is available
@@ -83,6 +92,18 @@ public class SimpleMaterialPagerDrawerActivity extends ActionBarActivity {
 
         oldBackground = ld;
         currentColor = newColor;
+    }
+
+    public Toolbar getToolbar() {
+        return toolbar;
+    }
+
+    public PagerSlidingTabStrip getTabs() {
+        return tabs;
+    }
+
+    public FrameLayout getFrameContainer() {
+        return frameLayout;
     }
 
     public SimpleMaterialPagerAdapter getAdapter() {

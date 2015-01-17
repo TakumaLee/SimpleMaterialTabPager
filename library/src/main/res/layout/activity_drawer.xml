@@ -16,7 +16,7 @@
              in front of the action bar -->
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
-            app:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:theme="@style/ToolBarTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="?attr/actionBarSize" />
@@ -46,6 +46,7 @@
         android:layout_width="304dp"
         android:layout_height="match_parent"
         android:layout_gravity="left|start"
+        android:background="#ffffff"
         android:fitsSystemWindows="true">
 
         <!-- Your drawer content -->

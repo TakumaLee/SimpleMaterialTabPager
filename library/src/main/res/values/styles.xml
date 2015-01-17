@@ -10,6 +10,10 @@
         <item name="android:textColorPrimary">@android:color/white</item>
     </style>
 
+    <style name="ToolBarTheme" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
     <style name="AppTheme" parent="MaterialTheme">
 
     </style>
