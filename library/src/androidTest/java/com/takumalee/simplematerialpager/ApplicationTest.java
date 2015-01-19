@@ -1,4 +1,4 @@
-package com.takumalee.simplematerialdesign;
+package com.takumalee.simplematerialpager;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

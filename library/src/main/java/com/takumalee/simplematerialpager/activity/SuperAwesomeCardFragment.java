@@ -24,7 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.takumalee.simplematerialdesign.R;
+import com.takumalee.simplematerialpager.R;
 
 /**
  *

@@ -17,7 +17,7 @@ import android.widget.FrameLayout;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
-import com.takumalee.simplematerialdesign.R;
+import com.takumalee.simplematerialpager.R;
 import com.takumalee.simplematerialpager.activity.SimpleMaterialPagerAdapter;
 import com.takumalee.simplematerialpager.manager.MaterialFragmentManager;
 

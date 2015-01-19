@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.RelativeLayout;
 
-import com.takumalee.simplematerialdesign.example.R;
 import com.takumalee.simplematerialpager.activity.SuperAwesomeCardFragment;
 import com.takumalee.simplematerialpager.view.SimpleMaterialPagerView;
 
