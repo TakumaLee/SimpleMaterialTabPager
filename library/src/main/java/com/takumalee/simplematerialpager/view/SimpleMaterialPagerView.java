@@ -1,33 +1,40 @@
 package com.takumalee.simplematerialpager.view;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.TransitionDrawable;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.takumalee.simplematerialdesign.R;
 import com.takumalee.simplematerialpager.activity.SimpleMaterialPagerAdapter;
+import com.takumalee.simplematerialpager.manager.MaterialFragmentManager;
 
 /**
  * Created by TakumaLee on 15/1/16.
  *
  */
-@Deprecated
 public class SimpleMaterialPagerView extends FrameLayout {
     private static final String TAG = SimpleMaterialPagerView.class.getSimpleName();
 
+    private MaterialFragmentManager mFManager = new MaterialFragmentManager();
+
+    private ActionBarActivity actionBarActivity;
     private Context context;
+    private LayoutInflater inflater;
+    private View view;
     private Toolbar toolbar;
-    private DrawerLayout drawerLayout;
     private PagerSlidingTabStrip tabs;
     private ViewPager viewPager;
 
@@ -40,6 +47,7 @@ public class SimpleMaterialPagerView extends FrameLayout {
     public SimpleMaterialPagerView(Context context) {
         super(context);
         this.context = context;
+        this.actionBarActivity = (ActionBarActivity) context;
         initView();
     }
 
@@ -56,31 +64,43 @@ public class SimpleMaterialPagerView extends FrameLayout {
     }
 
     private void initView() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
-        tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
-        viewPager = (ViewPager) findViewById(R.id.pager);
-        ((ActionBarActivity)context).setSupportActionBar(toolbar);
-        ((ActionBarActivity)context).getSupportActionBar().setDisplayShowHomeEnabled(true);
-        ((ActionBarActivity)context).getSupportActionBar().setLogo(R.drawable.ic_menu_white);
+        inflater = LayoutInflater.from(context);
+        view = inflater.inflate(R.layout.material_pager, null);
+        toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        tabs = (PagerSlidingTabStrip) view.findViewById(R.id.tabs);
+        viewPager = (ViewPager) view.findViewById(R.id.pager);
+        actionBarActivity.setSupportActionBar(toolbar);
+//        ((ActionBarActivity)context).getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        ((ActionBarActivity)context).getSupportActionBar().setLogo(R.drawable.ic_menu_white);
 
-        systemBarTintManager = new SystemBarTintManager((ActionBarActivity)context);
+        systemBarTintManager = new SystemBarTintManager((Activity) context);
         systemBarTintManager.setStatusBarTintEnabled(true);
 
-        drawerLayout.setStatusBarBackgroundColor(0);
+        changeColor(context.getResources().getColor(R.color.green));
+        this.addView(view);
+    }
 
-        adapter = new SimpleMaterialPagerAdapter(((ActionBarActivity)context).getSupportFragmentManager());
+    public void createNewPage(String title, Fragment fragment) {
+        mFManager.createNewInstance(title, fragment);
+    }
+
+    public void setMaterialPagerAdapter() {
+        adapter = new SimpleMaterialPagerAdapter(actionBarActivity.getSupportFragmentManager());
+        adapter.setmPagerEntities(mFManager.getEntities());
         viewPager.setAdapter(adapter);
 
 //        LinearLayout.LayoutParams tabParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, Math.round(48 * getResources().getDisplayMetrics().density));
         tabs.setShouldExpand(true);
         tabs.setViewPager(viewPager);
 //        tabs.setLayoutParams(tabParams);
-
-        changeColor(getResources().getColor(R.color.green));
     }
 
-    private void changeColor(int newColor) {
+    public void changeTextColor(int newColor) {
+        toolbar.setTitleTextColor(newColor);
+        tabs.setTextColor(newColor);
+    }
+
+    public void changeColor(int newColor) {
         tabs.setBackgroundColor(newColor);
         systemBarTintManager.setTintColor(newColor);
         // change ActionBar color just if an ActionBar is available
@@ -88,14 +108,30 @@ public class SimpleMaterialPagerView extends FrameLayout {
         Drawable bottomDrawable = new ColorDrawable(getResources().getColor(android.R.color.transparent));
         LayerDrawable ld = new LayerDrawable(new Drawable[]{colorDrawable, bottomDrawable});
         if (oldBackground == null) {
-            ((ActionBarActivity)context).getSupportActionBar().setBackgroundDrawable(ld);
+            actionBarActivity.getSupportActionBar().setBackgroundDrawable(ld);
         } else {
             TransitionDrawable td = new TransitionDrawable(new Drawable[]{oldBackground, ld});
-            ((ActionBarActivity)context).getSupportActionBar().setBackgroundDrawable(td);
+            actionBarActivity.getSupportActionBar().setBackgroundDrawable(td);
             td.startTransition(200);
         }
 
         oldBackground = ld;
         currentColor = newColor;
+    }
+
+    public Toolbar getToolbar() {
+        return toolbar;
+    }
+
+    public PagerSlidingTabStrip getTabs() {
+        return tabs;
+    }
+
+    public ViewPager getViewPager() {
+        return viewPager;
+    }
+
+    public SimpleMaterialPagerAdapter getAdapter() {
+        return adapter;
     }
 }
