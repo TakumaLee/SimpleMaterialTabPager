@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.takumalee.simplematerialdesign.activity;
+package com.takumalee.simplematerialpager.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

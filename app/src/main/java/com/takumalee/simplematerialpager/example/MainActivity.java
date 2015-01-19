@@ -1,4 +1,4 @@
-package com.takumalee.simplematerialdesign.example;
+package com.takumalee.simplematerialpager.example;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

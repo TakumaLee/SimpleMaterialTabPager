@@ -1,4 +1,4 @@
-package com.takumalee.simplematerialdesign.activity;
+package com.takumalee.simplematerialpager.activity;
 
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -15,7 +15,7 @@ import android.widget.FrameLayout;
 import com.astuetz.PagerSlidingTabStrip;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.takumalee.simplematerialdesign.R;
-import com.takumalee.simplematerialdesign.manager.MaterialFragmentManager;
+import com.takumalee.simplematerialpager.manager.MaterialFragmentManager;
 
 
 public class SimpleMaterialPagerDrawerActivity extends ActionBarActivity {

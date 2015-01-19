@@ -1,4 +1,4 @@
-package com.takumalee.simplematerialdesign.view;
+package com.takumalee.simplematerialpager.view;
 
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
@@ -15,7 +15,7 @@ import android.widget.FrameLayout;
 import com.astuetz.PagerSlidingTabStrip;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.takumalee.simplematerialdesign.R;
-import com.takumalee.simplematerialdesign.activity.SimpleMaterialPagerAdapter;
+import com.takumalee.simplematerialpager.activity.SimpleMaterialPagerAdapter;
 
 /**
  * Created by TakumaLee on 15/1/16.
