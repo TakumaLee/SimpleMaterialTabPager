@@ -5,9 +5,9 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.RelativeLayout;
 
-import com.takumalee.simplematerialdesign.activity.SimpleMaterialPagerDrawerActivity;
-import com.takumalee.simplematerialdesign.activity.SuperAwesomeCardFragment;
-import com.takumalee.simplematerialdesign.view.SimpleMaterialPagerView;
+import com.takumalee.simplematerialpager.activity.SimpleMaterialPagerDrawerActivity;
+import com.takumalee.simplematerialpager.activity.SuperAwesomeCardFragment;
+import com.takumalee.simplematerialpager.view.SimpleMaterialPagerView;
 
 import java.util.ArrayList;
 import java.util.List;

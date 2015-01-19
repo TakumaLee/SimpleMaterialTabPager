@@ -14,7 +14,7 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
-    <style name="AppTheme" parent="MaterialTheme">
-
+    <style name="MaterialPagerTheme" parent="MaterialTheme">
+        <item name="android:actionBarStyle">@style/ToolBarTheme</item>
     </style>
 </resources>

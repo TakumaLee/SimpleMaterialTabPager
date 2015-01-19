@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import com.astuetz.PagerSlidingTabStrip;
@@ -22,9 +23,11 @@ public class SimpleMaterialPagerDrawerActivity extends ActionBarActivity {
 
     private MaterialFragmentManager mFManager = new MaterialFragmentManager();
 
-    private Toolbar toolbar;
+
     private DrawerLayout drawerLayout;
     private FrameLayout frameLayout;
+    private View materialPagerView;
+    private Toolbar toolbar;
     private PagerSlidingTabStrip tabs;
     private ViewPager viewPager;
 
@@ -38,11 +41,14 @@ public class SimpleMaterialPagerDrawerActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
+        materialPagerView = (View) findViewById(R.id.materialpager);
         frameLayout = (FrameLayout) findViewById(R.id.frameLayout_DrawerContent);
-        tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
-        viewPager = (ViewPager) findViewById(R.id.pager);
+
+        toolbar = (Toolbar) materialPagerView.findViewById(R.id.toolbar);
+        tabs = (PagerSlidingTabStrip) materialPagerView.findViewById(R.id.tabs);
+        viewPager = (ViewPager) materialPagerView.findViewById(R.id.pager);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setLogo(R.drawable.ic_menu_white);
