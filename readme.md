@@ -1,7 +1,73 @@
-# Simple to create Material Pager with fragment
+# Simple to create Material Pager
 ![](http://i.imgur.com/C734q5F.png)
 
 # How to use
+1. Material Pager with Drawer
+2. Material Pager no Drawer
+3. Material simple toolbar
+
+## Material Pager with Drawer
+```
+	private SimpleMaterialPagerView mPagerView;
+   	private IDrawerLayout iDrawerLayout;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        iDrawerLayout = new IDrawerLayout(this);
+        mPagerView = new SimpleMaterialPagerView(this);
+        mPagerView.createNewPage("1", SuperAwesomeCardFragment.newInstance(1));
+        mPagerView.createNewPage("2", SuperAwesomeCardFragment.newInstance(2));
+        mPagerView.createNewPage("3", SuperAwesomeCardFragment.newInstance(3));
+        mPagerView.createNewPage("4", SuperAwesomeCardFragment.newInstance(4));
+        mPagerView.setMaterialPagerAdapter();
+        mPagerView.changeColor(getResources().getColor(android.R.color.holo_red_light));
+        iDrawerLayout.getContainer().addView(mPagerView);
+        setContentView(iDrawerLayout);
+    }
+```
+
+## Material Pager no Drawer
+```
+	RelativeLayout relativeLayout;
+   	private SimpleMaterialPagerView mPagerView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        relativeLayout = (RelativeLayout) findViewById(R.id.relative_Main);
+
+        mPagerView = new SimpleMaterialPagerView(this);
+        mPagerView.createNewPage("1", SuperAwesomeCardFragment.newInstance(1));
+        mPagerView.createNewPage("2", SuperAwesomeCardFragment.newInstance(2));
+        mPagerView.createNewPage("3", SuperAwesomeCardFragment.newInstance(3));
+        mPagerView.createNewPage("4", SuperAwesomeCardFragment.newInstance(4));
+        mPagerView.setMaterialPagerAdapter();
+        
+		mPagerView.changeColor(getResources().getColor(android.R.color.holo_red_light));
+
+        relativeLayout.addView(mPagerView);
+
+    }
+```
+
+## Material simple toolbar
+```
+
+    RelativeLayout relativeLayout;
+    private SimpleMaterialBarView mPagerView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        relativeLayout = (RelativeLayout) findViewById(R.id.relative_Main);
+        mPagerView.changeColor(getResources().getColor(android.R.color.holo_red_light));
+
+        relativeLayout.addView(mPagerView);
+    }
+```
 
 # Customization
 
