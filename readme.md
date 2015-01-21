@@ -2,9 +2,9 @@
 ![](http://i.imgur.com/C734q5F.png)
 
 # How to use
-1. Material Pager with Drawer
-2. Material Pager no Drawer
-3. Material simple toolbar
+1. [Material Pager with Drawer](https://github.com/TakumaMochizuki/SimpleMaterialPager#material-pager-with-drawer)
+2. [Material Pager no Drawer](https://github.com/TakumaMochizuki/SimpleMaterialPager#material-pager-no-drawer)
+3. [Material simple toolbar](https://github.com/TakumaMochizuki/SimpleMaterialPager#material-simple-toolbar)
 
 ## Material Pager with Drawer
 ```
