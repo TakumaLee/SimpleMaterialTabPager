@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.takumalee.simplematerialpager.R;
-import com.takumalee.simplematerialpager.activity.SimpleMaterialPagerAdapter;
+import com.takumalee.simplematerialpager.adapter.SimpleMaterialPagerFragmentAdapter;
 import com.takumalee.simplematerialpager.manager.MaterialFragmentManager;
 
 /**
@@ -33,7 +33,7 @@ public class SimpleMaterialPagerView extends LinearLayout {
     private PagerSlidingTabStrip tabs;
     private ViewPager viewPager;
 
-    private SimpleMaterialPagerAdapter adapter;
+    private SimpleMaterialPagerFragmentAdapter adapter;
 
     private Drawable oldBackground = null;
     private int currentColor;
@@ -76,7 +76,7 @@ public class SimpleMaterialPagerView extends LinearLayout {
     }
 
     public void setMaterialPagerAdapter() {
-        adapter = new SimpleMaterialPagerAdapter(actionBarActivity.getSupportFragmentManager());
+        adapter = new SimpleMaterialPagerFragmentAdapter(actionBarActivity.getSupportFragmentManager());
         adapter.setmPagerEntities(mFManager.getEntities());
         viewPager.setAdapter(adapter);
 
@@ -108,7 +108,7 @@ public class SimpleMaterialPagerView extends LinearLayout {
         return viewPager;
     }
 
-    public SimpleMaterialPagerAdapter getAdapter() {
+    public SimpleMaterialPagerFragmentAdapter getAdapter() {
         return adapter;
     }
 }

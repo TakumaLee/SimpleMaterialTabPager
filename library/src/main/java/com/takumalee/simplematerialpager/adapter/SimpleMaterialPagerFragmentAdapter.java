@@ -1,4 +1,4 @@
-package com.takumalee.simplematerialpager.activity;
+package com.takumalee.simplematerialpager.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,12 +11,12 @@ import java.util.List;
 /**
  * Created by TakumaLee on 15/1/12.
  */
-public class SimpleMaterialPagerAdapter extends FragmentPagerAdapter {
-    private static final String TAG = SimpleMaterialPagerAdapter.class.getSimpleName();
+public class SimpleMaterialPagerFragmentAdapter extends FragmentPagerAdapter {
+    private static final String TAG = SimpleMaterialPagerFragmentAdapter.class.getSimpleName();
 
     private List<MaterialPagerEntity> mPagerEntities;
 
-    public SimpleMaterialPagerAdapter(FragmentManager fm) {
+    public SimpleMaterialPagerFragmentAdapter(FragmentManager fm) {
         super(fm);
     }
 

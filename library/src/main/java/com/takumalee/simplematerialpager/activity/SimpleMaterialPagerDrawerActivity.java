@@ -16,6 +16,7 @@ import android.widget.FrameLayout;
 import com.astuetz.PagerSlidingTabStrip;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.takumalee.simplematerialpager.R;
+import com.takumalee.simplematerialpager.adapter.SimpleMaterialPagerFragmentAdapter;
 import com.takumalee.simplematerialpager.manager.MaterialFragmentManager;
 
 
@@ -32,7 +33,7 @@ public class SimpleMaterialPagerDrawerActivity extends ActionBarActivity {
     private ViewPager viewPager;
 
     private SystemBarTintManager systemBarTintManager;
-    private SimpleMaterialPagerAdapter adapter;
+    private SimpleMaterialPagerFragmentAdapter adapter;
 
     private Drawable oldBackground = null;
     private int currentColor;
@@ -66,7 +67,7 @@ public class SimpleMaterialPagerDrawerActivity extends ActionBarActivity {
     }
 
     protected void setMaterialPagerAdapter() {
-        adapter = new SimpleMaterialPagerAdapter(getSupportFragmentManager());
+        adapter = new SimpleMaterialPagerFragmentAdapter(getSupportFragmentManager());
         adapter.setmPagerEntities(mFManager.getEntities());
         viewPager.setAdapter(adapter);
 
@@ -112,7 +113,7 @@ public class SimpleMaterialPagerDrawerActivity extends ActionBarActivity {
         return frameLayout;
     }
 
-    public SimpleMaterialPagerAdapter getAdapter() {
+    public SimpleMaterialPagerFragmentAdapter getAdapter() {
         return adapter;
     }
 }
