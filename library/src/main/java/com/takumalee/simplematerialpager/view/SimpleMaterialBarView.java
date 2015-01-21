@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.readystatesoftware.systembartint.SystemBarTintManager;
@@ -27,6 +28,7 @@ public class SimpleMaterialBarView extends LinearLayout {
     private LayoutInflater inflater;
     private View view;
     private Toolbar toolbar;
+    private FrameLayout frameLayout;
 
     private SystemBarTintManager systemBarTintManager;
 
@@ -58,6 +60,7 @@ public class SimpleMaterialBarView extends LinearLayout {
         inflater = LayoutInflater.from(context);
         view = inflater.inflate(R.layout.material_bar, null);
         toolbar = (Toolbar) view.findViewById(R.id.toolbar_materialbar);
+        frameLayout = (FrameLayout) view.findViewById(R.id.frameLayout_materialbar);
         actionBarActivity.setSupportActionBar(toolbar);
 //        ((ActionBarActivity)context).getSupportActionBar().setDisplayShowHomeEnabled(true);
 //        ((ActionBarActivity)context).getSupportActionBar().setLogo(R.drawable.ic_menu_white);
@@ -95,4 +98,7 @@ public class SimpleMaterialBarView extends LinearLayout {
         return toolbar;
     }
 
+    public FrameLayout getFrameLayout() {
+        return frameLayout;
+    }
 }
