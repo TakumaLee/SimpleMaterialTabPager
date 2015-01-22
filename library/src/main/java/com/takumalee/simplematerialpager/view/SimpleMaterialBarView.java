@@ -39,22 +39,29 @@ public class SimpleMaterialBarView extends LinearLayout {
         super(context);
         this.context = context;
         this.actionBarActivity = (ActionBarActivity) context;
-        initView();
+        initView(0);
+    }
+
+    public SimpleMaterialBarView(Context context, int newColor) {
+        super(context);
+        this.context = context;
+        this.actionBarActivity = (ActionBarActivity) context;
+        initView(newColor);
     }
 
     public SimpleMaterialBarView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
-        initView();
+        initView(0);
     }
 
     public SimpleMaterialBarView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.context = context;
-        initView();
+        initView(0);
     }
 
-    private void initView() {
+    private void initView(int newColor) {
         this.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
         this.setOrientation(VERTICAL);
         inflater = LayoutInflater.from(context);
@@ -68,7 +75,7 @@ public class SimpleMaterialBarView extends LinearLayout {
         systemBarTintManager = new SystemBarTintManager((Activity) context);
         systemBarTintManager.setStatusBarTintEnabled(true);
 
-        changeColor(context.getResources().getColor(R.color.green));
+        changeColor(newColor == 0 ? context.getResources().getColor(R.color.green) : newColor);
         this.addView(view);
     }
 
@@ -106,11 +113,11 @@ public class SimpleMaterialBarView extends LinearLayout {
         return systemBarTintManager;
     }
 
-    public Drawable getOldBackground() {
-        return oldBackground;
-    }
-
     public int getCurrentColor() {
         return currentColor;
+    }
+
+    public Drawable getOldBackground() {
+        return oldBackground;
     }
 }
