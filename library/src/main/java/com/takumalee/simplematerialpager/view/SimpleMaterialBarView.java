@@ -101,4 +101,16 @@ public class SimpleMaterialBarView extends LinearLayout {
     public FrameLayout getFrameLayout() {
         return frameLayout;
     }
+
+    public SystemBarTintManager getSystemBarTintManager() {
+        return systemBarTintManager;
+    }
+
+    public Drawable getOldBackground() {
+        return oldBackground;
+    }
+
+    public int getCurrentColor() {
+        return currentColor;
+    }
 }
