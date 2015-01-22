@@ -71,6 +71,10 @@ public class SimpleMaterialPagerView extends LinearLayout {
         this.addView(barView);
     }
 
+    public void createNewPage(String title, View view) {
+        mFManager.createNewInstance(title, view);
+    }
+
     public void createNewPage(String title, Fragment fragment) {
         mFManager.createNewInstance(title, fragment);
     }

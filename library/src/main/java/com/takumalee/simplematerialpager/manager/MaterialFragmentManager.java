@@ -1,6 +1,7 @@
 package com.takumalee.simplematerialpager.manager;
 
 import android.support.v4.app.Fragment;
+import android.view.View;
 
 import com.takumalee.simplematerialpager.entity.MaterialPagerEntity;
 
@@ -18,6 +19,13 @@ public class MaterialFragmentManager {
         MaterialPagerEntity entity = new MaterialPagerEntity();
         entity.setTitle(title);
         entity.setFragment(fragment);
+        entities.add(entity);
+    }
+
+    public void createNewInstance(String title, View view) {
+        MaterialPagerEntity entity = new MaterialPagerEntity();
+        entity.setTitle(title);
+        entity.setView(view);
         entities.add(entity);
     }
 
