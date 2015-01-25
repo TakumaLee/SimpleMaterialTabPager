@@ -19,7 +19,7 @@ import com.takumalee.simplematerialpager.R;
 import com.takumalee.simplematerialpager.adapter.SimpleMaterialPagerFragmentAdapter;
 import com.takumalee.simplematerialpager.manager.MaterialFragmentManager;
 
-
+@Deprecated
 public class SimpleMaterialPagerDrawerActivity extends ActionBarActivity {
 
     private MaterialFragmentManager mFManager = new MaterialFragmentManager();
@@ -58,7 +58,7 @@ public class SimpleMaterialPagerDrawerActivity extends ActionBarActivity {
         systemBarTintManager.setStatusBarTintEnabled(true);
 
         drawerLayout.setStatusBarBackgroundColor(0);
-        changeColor(getResources().getColor(R.color.green));
+//        changeColor(getResources().getColor(R.color.green));
 
     }
 

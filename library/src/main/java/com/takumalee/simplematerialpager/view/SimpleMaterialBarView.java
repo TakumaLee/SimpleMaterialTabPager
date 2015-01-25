@@ -82,7 +82,7 @@ public class SimpleMaterialBarView extends LinearLayout {
         this.addView(view);
     }
 
-    public static int getRandomBackgroundColor() {
+    public int getRandomBackgroundColor() {
         Random rnd = new Random();
         int color = Color.argb(255, rnd.nextInt(64) + 192, rnd.nextInt(64) + 192, rnd.nextInt(64) + 192);
         return color;

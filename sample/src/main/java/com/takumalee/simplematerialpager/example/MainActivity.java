@@ -26,7 +26,7 @@ public class MainActivity extends ActionBarActivity {
 //        mPagerView.createNewPage("3", SuperAwesomeCardFragment.newInstance(3));
 //        mPagerView.createNewPage("4", SuperAwesomeCardFragment.newInstance(4));
         mPagerView.setMaterialPagerAdapter();
-        mPagerView.changeColor(getResources().getColor(android.R.color.holo_blue_bright));
+//        mPagerView.changeColor(getResources().getColor(android.R.color.holo_blue_bright));
         iDrawerLayout.getContainer().addView(mPagerView);
         setContentView(iDrawerLayout);
 //        relativeLayout.addView(mPagerView);
