@@ -2,6 +2,7 @@ package com.takumalee.simplematerialpager.view;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
@@ -16,6 +17,8 @@ import android.widget.LinearLayout;
 
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.takumalee.simplematerialpager.R;
+
+import java.util.Random;
 
 /**
  * Created by TakumaLee on 15/1/21.
@@ -75,8 +78,14 @@ public class SimpleMaterialBarView extends LinearLayout {
         systemBarTintManager = new SystemBarTintManager((Activity) context);
         systemBarTintManager.setStatusBarTintEnabled(true);
 
-        changeColor(newColor == 0 ? context.getResources().getColor(R.color.green) : newColor);
+        changeColor(newColor == 0 ? getRandomBackgroundColor() : newColor);
         this.addView(view);
+    }
+
+    public static int getRandomBackgroundColor() {
+        Random rnd = new Random();
+        int color = Color.argb(255, rnd.nextInt(64) + 192, rnd.nextInt(64) + 192, rnd.nextInt(64) + 192);
+        return color;
     }
 
     public void changeTextColor(int newColor) {

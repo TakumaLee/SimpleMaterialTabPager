@@ -66,7 +66,7 @@ public class SimpleMaterialPagerView extends LinearLayout {
         tabs = (PagerSlidingTabStrip) view.findViewById(R.id.tabs);
         viewPager = (ViewPager) view.findViewById(R.id.pager);
 
-        changeColor(context.getResources().getColor(R.color.green));
+        changeColor(barView.getRandomBackgroundColor());
         barView.getFrameLayout().addView(view);
         this.addView(barView);
     }
