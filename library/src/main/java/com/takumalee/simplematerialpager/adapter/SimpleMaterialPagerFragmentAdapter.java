@@ -3,6 +3,8 @@ package com.takumalee.simplematerialpager.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.takumalee.simplematerialpager.entity.MaterialPagerEntity;
 
@@ -37,5 +39,10 @@ public class SimpleMaterialPagerFragmentAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         return mPagerEntities.size();
+    }
+
+    @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
+        container.removeView((View) object);
     }
 }
