@@ -37,6 +37,7 @@ public class SimpleMaterialPagerView extends LinearLayout {
 
     private Drawable oldBackground = null;
     private int currentColor;
+    private boolean isNeedActionBar = true;
 
     public SimpleMaterialPagerView(Context context) {
         super(context);
@@ -57,18 +58,45 @@ public class SimpleMaterialPagerView extends LinearLayout {
         initView();
     }
 
+    public SimpleMaterialPagerView(Context context, boolean isNeedActionBar) {
+        super(context);
+        this.context = context;
+        this.actionBarActivity = (ActionBarActivity) context;
+        this.isNeedActionBar = isNeedActionBar;
+        initView();
+    }
+
+    public SimpleMaterialPagerView(Context context, AttributeSet attrs, boolean isNeedActionBar) {
+        super(context, attrs);
+        this.context = context;
+        this.isNeedActionBar = isNeedActionBar;
+        initView();
+    }
+
+    public SimpleMaterialPagerView(Context context, AttributeSet attrs, int defStyleAttr, boolean isNeedActionBar) {
+        super(context, attrs, defStyleAttr);
+        this.context = context;
+        this.isNeedActionBar = isNeedActionBar;
+        initView();
+    }
+
     private void initView() {
         this.setOrientation(VERTICAL);
         inflater = LayoutInflater.from(context);
-        barView = new SimpleMaterialBarView(context);
 
         view = inflater.inflate(R.layout.material_pager, null);
         tabs = (PagerSlidingTabStrip) view.findViewById(R.id.tabs);
         viewPager = (ViewPager) view.findViewById(R.id.pager);
 
-        changeColor(barView.getRandomBackgroundColor());
-        barView.getFrameLayout().addView(view);
-        this.addView(barView);
+
+        if (isNeedActionBar) {
+            barView = new SimpleMaterialBarView(context);
+            changeColor(barView.getRandomBackgroundColor());
+            barView.getFrameLayout().addView(view);
+            this.addView(barView);
+        } else {
+            this.addView(view);
+        }
     }
 
     public void createNewPage(String title, View view) {
@@ -92,12 +120,12 @@ public class SimpleMaterialPagerView extends LinearLayout {
 
     public void changeTextColor(int newColor) {
         barView.changeTextColor(newColor);
-        tabs.setTextColor(newColor);
+        if (isNeedActionBar) tabs.setTextColor(newColor);
     }
 
     public void changeColor(int newColor) {
         tabs.setBackgroundColor(newColor);
-        barView.changeColor(newColor);
+        if (isNeedActionBar) barView.changeColor(newColor);
     }
 
     public Toolbar getToolbar() {

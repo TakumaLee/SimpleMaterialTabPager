@@ -1,35 +1,31 @@
 package com.takumalee.simplematerialpager.example;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
+import android.widget.RelativeLayout;
 
-import com.takumalee.simplematerialpager.activity.SuperAwesomeCardFragment;
-import com.takumalee.simplematerialpager.view.IDrawerLayout;
 import com.takumalee.simplematerialpager.view.SimpleMaterialPagerView;
 
 
 public class MainActivity extends ActionBarActivity {
 
-//    RelativeLayout relativeLayout;
+    RelativeLayout relativeLayout;
     private SimpleMaterialPagerView mPagerView;
-    private IDrawerLayout iDrawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//        relativeLayout = (RelativeLayout) findViewById(R.id.relative_Main);
-        iDrawerLayout = new IDrawerLayout(this);
+        setContentView(R.layout.activity_main);
+        relativeLayout = (RelativeLayout) findViewById(R.id.relative_Main);
         mPagerView = new SimpleMaterialPagerView(this);
-        mPagerView.createNewPage("1", SuperAwesomeCardFragment.newInstance(1));
-        mPagerView.createNewPage("2", SuperAwesomeCardFragment.newInstance(2));
+        mPagerView.createNewPage("1", new Fragment());
+        mPagerView.createNewPage("2", new Fragment());
 //        mPagerView.createNewPage("3", SuperAwesomeCardFragment.newInstance(3));
 //        mPagerView.createNewPage("4", SuperAwesomeCardFragment.newInstance(4));
         mPagerView.setMaterialPagerAdapter();
-//        mPagerView.changeColor(getResources().getColor(android.R.color.holo_blue_bright));
-        iDrawerLayout.getContainer().addView(mPagerView);
-        setContentView(iDrawerLayout);
-//        relativeLayout.addView(mPagerView);
+        mPagerView.changeColor(getResources().getColor(android.R.color.holo_blue_bright));
+        relativeLayout.addView(mPagerView);
 //        createNewPage("1", SuperAwesomeCardFragment.newInstance(1));
 //        createNewPage("2", SuperAwesomeCardFragment.newInstance(2));
 //        createNewPage("3", SuperAwesomeCardFragment.newInstance(3));

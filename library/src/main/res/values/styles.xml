@@ -4,17 +4,16 @@
     <style name="MaterialTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@color/background_window</item>
         <!-- ...and here we setting appcompat’s color theming attrs -->
-        <!--<item name="colorPrimary">@color/green</item>-->
-        <!--<item name="colorPrimaryDark">@color/greenDark</item>-->
-        <!--<item name="colorAccent">@color/banana</item>-->
         <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:windowActionBarOverlay">true</item>
     </style>
 
     <style name="ToolBarTheme" parent="ThemeOverlay.AppCompat.ActionBar">
         <item name="android:textColor">@android:color/white</item>
     </style>
 
-    <style name="MaterialPagerTheme" parent="MaterialTheme">
-        <item name="android:actionBarStyle">@style/ToolBarTheme</item>
+    <style name="MaterialDrawerTheme" parent="MaterialTheme">
+        <!--<item name="android:actionBarStyle">@style/ToolBarTheme</item>-->
     </style>
 </resources>
