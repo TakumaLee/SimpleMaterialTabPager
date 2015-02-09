@@ -119,13 +119,17 @@ public class SimpleMaterialPagerView extends LinearLayout {
     }
 
     public void changeTextColor(int newColor) {
-        barView.changeTextColor(newColor);
-        if (isNeedActionBar) tabs.setTextColor(newColor);
+        tabs.setTextColor(newColor);
+        if (isNeedActionBar) barView.changeTextColor(newColor);
     }
 
     public void changeColor(int newColor) {
         tabs.setBackgroundColor(newColor);
         if (isNeedActionBar) barView.changeColor(newColor);
+    }
+
+    public void changeIndicatorColor(int newColor) {
+        tabs.setIndicatorColor(newColor);
     }
 
     public Toolbar getToolbar() {
