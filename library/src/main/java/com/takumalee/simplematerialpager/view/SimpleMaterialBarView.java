@@ -30,6 +30,7 @@ public class SimpleMaterialBarView extends LinearLayout {
     private Context context;
     private LayoutInflater inflater;
     private View view;
+    private LinearLayout parent;
     private Toolbar toolbar;
     private FrameLayout frameLayout;
 
@@ -69,6 +70,7 @@ public class SimpleMaterialBarView extends LinearLayout {
         this.setOrientation(VERTICAL);
         inflater = LayoutInflater.from(context);
         view = inflater.inflate(R.layout.material_bar, null);
+        parent = (LinearLayout) view.findViewById(R.id.linearLayout_materialbar);
         toolbar = (Toolbar) view.findViewById(R.id.toolbar_materialbar);
         frameLayout = (FrameLayout) view.findViewById(R.id.frameLayout_materialbar);
         actionBarActivity.setSupportActionBar(toolbar);
@@ -116,6 +118,10 @@ public class SimpleMaterialBarView extends LinearLayout {
 
     public FrameLayout getFrameLayout() {
         return frameLayout;
+    }
+
+    public LinearLayout getBarParent() {
+        return parent;
     }
 
     public SystemBarTintManager getSystemBarTintManager() {

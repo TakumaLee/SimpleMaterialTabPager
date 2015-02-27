@@ -1,29 +1,28 @@
 package com.takumalee.simplematerialpager.example;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.RelativeLayout;
 
-import com.takumalee.simplematerialpager.view.SimpleMaterialPagerView;
+import com.takumalee.simplematerialpager.view.SimpleMaterialBarView;
 
 
 public class MainActivity extends ActionBarActivity {
 
     RelativeLayout relativeLayout;
-    private SimpleMaterialPagerView mPagerView;
+    private SimpleMaterialBarView mPagerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         relativeLayout = (RelativeLayout) findViewById(R.id.relative_Main);
-        mPagerView = new SimpleMaterialPagerView(this);
-        mPagerView.createNewPage("1", new Fragment());
-        mPagerView.createNewPage("2", new Fragment());
+        mPagerView = new SimpleMaterialBarView(this);
+//        mPagerView.createNewPage("1", new Fragment());
+//        mPagerView.createNewPage("2", new Fragment());
 //        mPagerView.createNewPage("3", SuperAwesomeCardFragment.newInstance(3));
 //        mPagerView.createNewPage("4", SuperAwesomeCardFragment.newInstance(4));
-        mPagerView.setMaterialPagerAdapter();
+//        mPagerView.setMaterialPagerAdapter();
         mPagerView.changeColor(getResources().getColor(android.R.color.holo_blue_bright));
         relativeLayout.addView(mPagerView);
 //        createNewPage("1", SuperAwesomeCardFragment.newInstance(1));
