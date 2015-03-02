@@ -3,6 +3,7 @@ package com.takumalee.simplematerialpager.view;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -112,10 +113,17 @@ public class SimpleMaterialPagerView extends LinearLayout {
         adapter.setmPagerEntities(mFManager.getEntities());
         viewPager.setAdapter(adapter);
 
-//        LinearLayout.LayoutParams tabParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, Math.round(48 * getResources().getDisplayMetrics().density));
         tabs.setShouldExpand(true);
         tabs.setViewPager(viewPager);
-//        tabs.setLayoutParams(tabParams);
+    }
+
+    public void setChildMaterialPagerAdapter(FragmentManager fm) {
+        adapter = new SimpleMaterialPagerFragmentAdapter(fm);
+        adapter.setmPagerEntities(mFManager.getEntities());
+        viewPager.setAdapter(adapter);
+
+        tabs.setShouldExpand(true);
+        tabs.setViewPager(viewPager);
     }
 
     public void changeTextColor(int newColor) {

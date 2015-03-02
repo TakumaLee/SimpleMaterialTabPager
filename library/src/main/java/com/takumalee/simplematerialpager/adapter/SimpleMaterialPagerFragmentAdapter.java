@@ -3,7 +3,6 @@ package com.takumalee.simplematerialpager.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.view.View;
 import android.view.ViewGroup;
 
 import com.takumalee.simplematerialpager.entity.MaterialPagerEntity;
@@ -16,10 +15,12 @@ import java.util.List;
 public class SimpleMaterialPagerFragmentAdapter extends FragmentPagerAdapter {
     private static final String TAG = SimpleMaterialPagerFragmentAdapter.class.getSimpleName();
 
+    private FragmentManager fragmentManager;
     private List<MaterialPagerEntity> mPagerEntities;
 
     public SimpleMaterialPagerFragmentAdapter(FragmentManager fm) {
         super(fm);
+        this.fragmentManager = fm;
     }
 
     public void setmPagerEntities(List<MaterialPagerEntity> mPagerEntities) {
@@ -43,6 +44,6 @@ public class SimpleMaterialPagerFragmentAdapter extends FragmentPagerAdapter {
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        container.removeView((View) object);
+        fragmentManager.beginTransaction().remove((Fragment) object).commit();
     }
 }
