@@ -1,4 +1,4 @@
-package com.takumalee.simplematerialpager.view;
+package com.github.takumalee.simplematerialpager.view;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -13,9 +13,9 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.astuetz.PagerSlidingTabStrip;
-import com.takumalee.simplematerialpager.R;
-import com.takumalee.simplematerialpager.adapter.SimpleMaterialPagerFragmentAdapter;
-import com.takumalee.simplematerialpager.manager.MaterialFragmentManager;
+import com.github.takumalee.simplematerialpager.R;
+import com.github.takumalee.simplematerialpager.adapter.SimpleMaterialPagerFragmentAdapter;
+import com.github.takumalee.simplematerialpager.manager.MaterialFragmentManager;
 
 /**
  * Created by TakumaLee on 15/1/16.

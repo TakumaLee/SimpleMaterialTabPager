@@ -1,10 +1,10 @@
-package com.takumalee.simplematerialpager.example;
+package com.github.takumalee.simplematerialpager.example;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.RelativeLayout;
 
-import com.takumalee.simplematerialpager.view.SimpleMaterialBarView;
+import com.github.takumalee.simplematerialpager.view.SimpleMaterialBarView;
 
 
 public class MainActivity extends ActionBarActivity {

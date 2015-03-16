@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="MaterialDrawerTheme" parent="MaterialTheme">
+    <style name="AppTheme" parent="MaterialTheme">
         <item name="android:actionBarStyle">@style/ToolBarTheme</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>

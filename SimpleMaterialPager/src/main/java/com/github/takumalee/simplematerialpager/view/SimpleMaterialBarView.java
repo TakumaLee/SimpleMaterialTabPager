@@ -1,4 +1,4 @@
-package com.takumalee.simplematerialpager.view;
+package com.github.takumalee.simplematerialpager.view;
 
 import android.app.Activity;
 import android.content.Context;
@@ -15,8 +15,8 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
+import com.github.takumalee.simplematerialpager.R;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
-import com.takumalee.simplematerialpager.R;
 
 import java.util.Random;
 

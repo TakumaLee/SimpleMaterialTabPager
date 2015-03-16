@@ -1,4 +1,4 @@
-package com.takumalee.simplematerialpager.entity;
+package com.github.takumalee.simplematerialpager.entity;
 
 import android.support.v4.app.Fragment;
 import android.view.View;

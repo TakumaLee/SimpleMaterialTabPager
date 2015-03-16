@@ -1,10 +1,10 @@
-package com.takumalee.simplematerialpager.adapter;
+package com.github.takumalee.simplematerialpager.adapter;
 
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.takumalee.simplematerialpager.entity.MaterialPagerEntity;
+import com.github.takumalee.simplematerialpager.entity.MaterialPagerEntity;
 
 import java.util.List;
 
