@@ -1,5 +1,6 @@
 package com.github.takumalee.simplematerialpager.view;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,7 @@ import com.astuetz.PagerSlidingTabStrip;
 import com.github.takumalee.simplematerialpager.R;
 import com.github.takumalee.simplematerialpager.adapter.SimpleMaterialPagerFragmentAdapter;
 import com.github.takumalee.simplematerialpager.manager.MaterialFragmentManager;
+import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 /**
  * Created by TakumaLee on 15/1/16.
@@ -35,6 +37,8 @@ public class SimpleMaterialPagerView extends LinearLayout {
     private ViewPager viewPager;
 
     private SimpleMaterialPagerFragmentAdapter adapter;
+
+    private SystemBarTintManager systemBarTintManager;
 
     private Drawable oldBackground = null;
     private int currentColor;
@@ -134,6 +138,12 @@ public class SimpleMaterialPagerView extends LinearLayout {
     public void changeColor(int newColor) {
         tabs.setBackgroundColor(newColor);
         if (isNeedActionBar) barView.changeColor(newColor);
+    }
+
+    public void changeStatusBarColor(int newColor) {
+        systemBarTintManager = new SystemBarTintManager((Activity) context);
+        systemBarTintManager.setStatusBarTintEnabled(true);
+        systemBarTintManager.setTintColor(newColor);
     }
 
     public void changeIndicatorColor(int newColor) {
