@@ -100,8 +100,6 @@ public class SimpleMaterialPagerView extends LinearLayout {
             barView.getFrameLayout().addView(view);
             this.addView(barView);
         } else {
-            systemBarTintManager = new SystemBarTintManager((Activity) context);
-            systemBarTintManager.setStatusBarTintEnabled(true);
             this.addView(view);
         }
     }
@@ -143,6 +141,8 @@ public class SimpleMaterialPagerView extends LinearLayout {
     }
 
     public void changeStatusBarColor(int newColor) {
+        systemBarTintManager = new SystemBarTintManager((Activity) context);
+        systemBarTintManager.setStatusBarTintEnabled(true);
         systemBarTintManager.setTintColor(newColor);
     }
 
