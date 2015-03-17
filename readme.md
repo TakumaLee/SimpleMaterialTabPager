@@ -2,32 +2,19 @@
 ![](http://i.imgur.com/C734q5F.png)
 
 # How to use
-1. [Material Pager with Drawer](https://github.com/TakumaMochizuki/SimpleMaterialPager#material-pager-with-drawer)
-2. [Material Pager no Drawer](https://github.com/TakumaMochizuki/SimpleMaterialPager#material-pager-no-drawer)
-3. [Material simple toolbar](https://github.com/TakumaMochizuki/SimpleMaterialPager#material-simple-toolbar)
 
-## Material Pager with Drawer
-```
-	private SimpleMaterialPagerView mPagerView;
-   	private IDrawerLayout iDrawerLayout;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        iDrawerLayout = new IDrawerLayout(this);
-        mPagerView = new SimpleMaterialPagerView(this);
-        mPagerView.createNewPage("1", SuperAwesomeCardFragment.newInstance(1));
-        mPagerView.createNewPage("2", SuperAwesomeCardFragment.newInstance(2));
-        mPagerView.createNewPage("3", SuperAwesomeCardFragment.newInstance(3));
-        mPagerView.createNewPage("4", SuperAwesomeCardFragment.newInstance(4));
-        mPagerView.setMaterialPagerAdapter();
-        mPagerView.changeColor(getResources().getColor(android.R.color.holo_red_light));
-        iDrawerLayout.getContainer().addView(mPagerView);
-        setContentView(iDrawerLayout);
-    }
+## Dependencies
+```gradle
+	compile 'com.github.takumalee:SimpleMaterialPager:1.0.4'
 ```
 
-## Material Pager no Drawer
+## Usage
+
+1. [`Material Pager no Drawer`](https://github.com/TakumaMochizuki/SimpleMaterialPager#material-pager-no-drawer)
+2. [`Material simple toolbar`](https://github.com/TakumaMochizuki/SimpleMaterialPager#material-simple-toolbar)
+
+
+### Material Pager no Drawer
 ```
 	RelativeLayout relativeLayout;
    	private SimpleMaterialPagerView mPagerView;
@@ -52,7 +39,7 @@
     }
 ```
 
-## Material simple toolbar
+### Material simple toolbar
 ```
 
     RelativeLayout relativeLayout;
@@ -69,7 +56,7 @@
     }
 ```
 
-# Customization
+## Default Tabs Customization
 
 From theme:
 
