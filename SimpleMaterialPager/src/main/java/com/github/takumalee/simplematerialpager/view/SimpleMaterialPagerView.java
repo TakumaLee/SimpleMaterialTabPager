@@ -6,7 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -28,7 +28,7 @@ public class SimpleMaterialPagerView extends LinearLayout {
 
     private MaterialFragmentManager mFManager = new MaterialFragmentManager();
 
-    private ActionBarActivity actionBarActivity;
+    private AppCompatActivity appCompatActivity;
     private Context context;
     private LayoutInflater inflater;
     private SimpleMaterialBarView barView;
@@ -47,7 +47,7 @@ public class SimpleMaterialPagerView extends LinearLayout {
     public SimpleMaterialPagerView(Context context) {
         super(context);
         this.context = context;
-        this.actionBarActivity = (ActionBarActivity) context;
+        this.appCompatActivity = (AppCompatActivity) context;
         initView();
     }
 
@@ -66,7 +66,7 @@ public class SimpleMaterialPagerView extends LinearLayout {
     public SimpleMaterialPagerView(Context context, boolean isNeedActionBar) {
         super(context);
         this.context = context;
-        this.actionBarActivity = (ActionBarActivity) context;
+        this.appCompatActivity = (AppCompatActivity) context;
         this.isNeedActionBar = isNeedActionBar;
         initView();
     }
@@ -113,7 +113,7 @@ public class SimpleMaterialPagerView extends LinearLayout {
     }
 
     public void setMaterialPagerAdapter() {
-        adapter = new SimpleMaterialPagerFragmentAdapter(actionBarActivity.getSupportFragmentManager());
+        adapter = new SimpleMaterialPagerFragmentAdapter(appCompatActivity.getSupportFragmentManager());
         adapter.setmPagerEntities(mFManager.getEntities());
         viewPager.setAdapter(adapter);
 
