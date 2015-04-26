@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
-version = "1.0.5"
+version = "1.0.7"
 
 def siteUrl = 'http://takuma-nekomayoi-blog.logdown.com/'     // project homepage
 def gitUrl = 'https://github.com/TakumaMochizuki/SimpleMaterialPager.git'  // project git
@@ -10,22 +10,22 @@ group = "com.github.takumalee"
 
 android {
     compileSdkVersion 22
-    buildToolsVersion "21.1.2"
+    buildToolsVersion "22.0.1"
 
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 22
         versionCode 1
-        versionName "1.0.5"
+        versionName "1.0.7"
     }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.1.0'
-    compile 'com.jpardogo.materialtabstrip:library:1.0.8'
+    compile 'com.jpardogo.materialtabstrip:library:1.0.9'
     compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
-    compile 'com.nineoldandroids:library:2.4.0'
+//    compile 'com.nineoldandroids:library:2.4.0'
 }
 
 install {
