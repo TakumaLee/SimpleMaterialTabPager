@@ -1,10 +1,10 @@
 package com.github.takumalee.simplematerialpager.example;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.RelativeLayout;
 
+import com.github.takumalee.simplematerialpager.example.fragment.SuperAwesomeCardFragment;
 import com.github.takumalee.simplematerialpager.view.SimpleMaterialPagerView;
 
 
@@ -18,14 +18,14 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         relativeLayout = (RelativeLayout) findViewById(R.id.relative_Main);
-        mPagerView = new SimpleMaterialPagerView(this, false);
+        mPagerView = new SimpleMaterialPagerView(this);
         mPagerView.setFitsSystemWindows(false);
-        mPagerView.createNewPage("1", new Fragment());
-        mPagerView.createNewPage("2", new Fragment());
+        mPagerView.createNewPage("1", SuperAwesomeCardFragment.newInstance(1));
+        mPagerView.createNewPage("2", SuperAwesomeCardFragment.newInstance(2));
 //        mPagerView.createNewPage("3", SuperAwesomeCardFragment.newInstance(3));
 //        mPagerView.createNewPage("4", SuperAwesomeCardFragment.newInstance(4));
-//        mPagerView.setMaterialPagerAdapter();
-        mPagerView.changeColor(getResources().getColor(android.R.color.holo_blue_bright));
+        mPagerView.setMaterialPagerAdapter();
+        mPagerView.changeAllColor(getResources().getColor(android.R.color.holo_blue_bright));
         mPagerView.changeStatusBarColor(getResources().getColor(android.R.color.holo_blue_bright));
         relativeLayout.addView(mPagerView);
 //        createNewPage("1", SuperAwesomeCardFragment.newInstance(1));

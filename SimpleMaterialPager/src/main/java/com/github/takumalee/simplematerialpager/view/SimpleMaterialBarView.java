@@ -7,9 +7,12 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.TransitionDrawable;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -26,8 +29,17 @@ import java.util.Random;
 public class SimpleMaterialBarView extends LinearLayout {
     private static final String TAG = SimpleMaterialBarView.class.getSimpleName();
 
+    @Deprecated
+    private ActionBarActivity actionBarActivity;
     private AppCompatActivity appCompatActivity;
-    private Context context;
+    private int type = TYPE.APP_COMPACT;
+
+    public class TYPE {
+        public static final int ACTION_BAR = 1;
+        public static final int APP_COMPACT = 2;
+    }
+
+    protected Context context;
     private LayoutInflater inflater;
     private View view;
     private LinearLayout parent;
@@ -42,27 +54,54 @@ public class SimpleMaterialBarView extends LinearLayout {
     public SimpleMaterialBarView(Context context) {
         super(context);
         this.context = context;
-        this.appCompatActivity = (AppCompatActivity) context;
+        if (context instanceof ActionBarActivity) {
+            Log.v(TAG, "ActionBarActivity");
+            initActivity(TYPE.ACTION_BAR);
+        } else if (context instanceof AppCompatActivity) {
+            Log.v(TAG, "AppCompatActivity");
+            initActivity(TYPE.APP_COMPACT);
+        }
         initView(0);
     }
 
-    public SimpleMaterialBarView(Context context, int newColor) {
+    public SimpleMaterialBarView(Context context, int type) {
         super(context);
         this.context = context;
-        this.appCompatActivity = (AppCompatActivity) context;
+        initActivity(type);
+        initView(0);
+    }
+
+    public SimpleMaterialBarView(Context context, int type, int newColor) {
+        super(context);
+        this.context = context;
         initView(newColor);
     }
 
-    public SimpleMaterialBarView(Context context, AttributeSet attrs) {
+    public SimpleMaterialBarView(Context context, int type, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
+        initActivity(type);
         initView(0);
     }
 
-    public SimpleMaterialBarView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public SimpleMaterialBarView(Context context, int type, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.context = context;
+        initActivity(type);
         initView(0);
+    }
+
+    private void initActivity(int type) {
+        this.type = type;
+        switch (type) {
+            case TYPE.ACTION_BAR:
+                this.actionBarActivity = (ActionBarActivity) context;
+                break;
+            case TYPE.APP_COMPACT:
+                this.appCompatActivity = (AppCompatActivity) context;
+                break;
+        }
+
     }
 
     private void initView(int newColor) {
@@ -73,20 +112,29 @@ public class SimpleMaterialBarView extends LinearLayout {
         parent = (LinearLayout) view.findViewById(R.id.linearLayout_materialbar);
         toolbar = (Toolbar) view.findViewById(R.id.toolbar_materialbar);
         frameLayout = (FrameLayout) view.findViewById(R.id.frameLayout_materialbar);
-        appCompatActivity.setSupportActionBar(toolbar);
+
+        switch (type) {
+            case TYPE.ACTION_BAR:
+                this.actionBarActivity.setSupportActionBar(toolbar);
+                break;
+            case TYPE.APP_COMPACT:
+                this.appCompatActivity.setSupportActionBar(toolbar);
+                break;
+        }
+
 //        ((ActionBarActivity)context).getSupportActionBar().setDisplayShowHomeEnabled(true);
 //        ((ActionBarActivity)context).getSupportActionBar().setLogo(R.drawable.ic_menu_white);
 
         systemBarTintManager = new SystemBarTintManager((Activity) context);
         systemBarTintManager.setStatusBarTintEnabled(true);
 
-        changeColor(newColor == 0 ? getRandomBackgroundColor() : newColor);
+        changeBarColor(newColor == 0 ? getRandomBackgroundColor() : newColor);
         this.addView(view);
     }
 
     public int getRandomBackgroundColor() {
         Random rnd = new Random();
-        int color = Color.argb(255, rnd.nextInt(64) + 192, rnd.nextInt(64) + 192, rnd.nextInt(64) + 192);
+        int color = Color.argb(255, rnd.nextInt(64) + 256, rnd.nextInt(64) + 256, rnd.nextInt(64) + 256);
         return color;
     }
 
@@ -94,22 +142,33 @@ public class SimpleMaterialBarView extends LinearLayout {
         toolbar.setTitleTextColor(newColor);
     }
 
-    public void changeColor(int newColor) {
+    public void changeBarColor(int newColor) {
         systemBarTintManager.setTintColor(newColor);
         // change ActionBar color just if an ActionBar is available
         Drawable colorDrawable = new ColorDrawable(newColor);
         Drawable bottomDrawable = new ColorDrawable(getResources().getColor(android.R.color.transparent));
         LayerDrawable ld = new LayerDrawable(new Drawable[]{colorDrawable, bottomDrawable});
         if (oldBackground == null) {
-            appCompatActivity.getSupportActionBar().setBackgroundDrawable(ld);
+            setActionBarBackgroundDrawable(ld);
         } else {
             TransitionDrawable td = new TransitionDrawable(new Drawable[]{oldBackground, ld});
-            appCompatActivity.getSupportActionBar().setBackgroundDrawable(td);
+            setActionBarBackgroundDrawable(td);
             td.startTransition(200);
         }
 
         oldBackground = ld;
         currentColor = newColor;
+    }
+
+    private void setActionBarBackgroundDrawable(Drawable drawable) {
+        switch (type) {
+            case TYPE.ACTION_BAR:
+                this.actionBarActivity.getSupportActionBar().setBackgroundDrawable(drawable);
+                break;
+            case TYPE.APP_COMPACT:
+                this.appCompatActivity.getSupportActionBar().setBackgroundDrawable(drawable);
+                break;
+        }
     }
 
     public Toolbar getToolbar() {
@@ -134,5 +193,16 @@ public class SimpleMaterialBarView extends LinearLayout {
 
     public Drawable getOldBackground() {
         return oldBackground;
+    }
+
+    protected FragmentManager getContextFragmentManager() {
+        switch (type) {
+            case TYPE.ACTION_BAR:
+                return actionBarActivity.getSupportFragmentManager();
+            case TYPE.APP_COMPACT:
+                return appCompatActivity.getSupportFragmentManager();
+            default:
+                return appCompatActivity.getSupportFragmentManager();
+        }
     }
 }

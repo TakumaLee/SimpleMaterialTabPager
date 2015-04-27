@@ -6,12 +6,8 @@ import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.github.takumalee.simplematerialpager.R;
@@ -23,15 +19,12 @@ import com.readystatesoftware.systembartint.SystemBarTintManager;
  * Created by TakumaLee on 15/1/16.
  *
  */
-public class SimpleMaterialPagerView extends LinearLayout {
+public class SimpleMaterialPagerView extends SimpleMaterialBarView {
     private static final String TAG = SimpleMaterialPagerView.class.getSimpleName();
 
     private MaterialFragmentManager mFManager = new MaterialFragmentManager();
 
-    private AppCompatActivity appCompatActivity;
-    private Context context;
     private LayoutInflater inflater;
-    private SimpleMaterialBarView barView;
     private View view;
     private PagerSlidingTabStrip tabs;
     private ViewPager viewPager;
@@ -46,41 +39,11 @@ public class SimpleMaterialPagerView extends LinearLayout {
 
     public SimpleMaterialPagerView(Context context) {
         super(context);
-        this.context = context;
-        this.appCompatActivity = (AppCompatActivity) context;
-        initView();
-    }
-
-    public SimpleMaterialPagerView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        this.context = context;
-        initView();
-    }
-
-    public SimpleMaterialPagerView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        this.context = context;
         initView();
     }
 
     public SimpleMaterialPagerView(Context context, boolean isNeedActionBar) {
         super(context);
-        this.context = context;
-        this.appCompatActivity = (AppCompatActivity) context;
-        this.isNeedActionBar = isNeedActionBar;
-        initView();
-    }
-
-    public SimpleMaterialPagerView(Context context, AttributeSet attrs, boolean isNeedActionBar) {
-        super(context, attrs);
-        this.context = context;
-        this.isNeedActionBar = isNeedActionBar;
-        initView();
-    }
-
-    public SimpleMaterialPagerView(Context context, AttributeSet attrs, int defStyleAttr, boolean isNeedActionBar) {
-        super(context, attrs, defStyleAttr);
-        this.context = context;
         this.isNeedActionBar = isNeedActionBar;
         initView();
     }
@@ -93,14 +56,10 @@ public class SimpleMaterialPagerView extends LinearLayout {
         tabs = (PagerSlidingTabStrip) view.findViewById(R.id.tabs);
         viewPager = (ViewPager) view.findViewById(R.id.pager);
 
+        getFrameLayout().addView(view);
 
-        if (isNeedActionBar) {
-            barView = new SimpleMaterialBarView(context);
-            changeColor(barView.getRandomBackgroundColor());
-            barView.getFrameLayout().addView(view);
-            this.addView(barView);
-        } else {
-            this.addView(view);
+        if (!isNeedActionBar) {
+            getToolbar().setVisibility(GONE);
         }
     }
 
@@ -113,7 +72,7 @@ public class SimpleMaterialPagerView extends LinearLayout {
     }
 
     public void setMaterialPagerAdapter() {
-        adapter = new SimpleMaterialPagerFragmentAdapter(appCompatActivity.getSupportFragmentManager());
+        adapter = new SimpleMaterialPagerFragmentAdapter(getContextFragmentManager());
         adapter.setmPagerEntities(mFManager.getEntities());
         viewPager.setAdapter(adapter);
 
@@ -132,12 +91,12 @@ public class SimpleMaterialPagerView extends LinearLayout {
 
     public void changeTextColor(int newColor) {
         tabs.setTextColor(newColor);
-        if (isNeedActionBar) barView.changeTextColor(newColor);
+        if (isNeedActionBar) changeTextColor(newColor);
     }
 
-    public void changeColor(int newColor) {
+    public void changeAllColor(int newColor) {
         tabs.setBackgroundColor(newColor);
-        if (isNeedActionBar) barView.changeColor(newColor);
+        if (isNeedActionBar) super.changeBarColor(newColor);
     }
 
     public void changeStatusBarColor(int newColor) {
@@ -148,10 +107,6 @@ public class SimpleMaterialPagerView extends LinearLayout {
 
     public void changeIndicatorColor(int newColor) {
         tabs.setIndicatorColor(newColor);
-    }
-
-    public Toolbar getToolbar() {
-        return barView.getToolbar();
     }
 
     public PagerSlidingTabStrip getTabs() {
