@@ -9,7 +9,6 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.astuetz.PagerSlidingTabStrip;
 import com.github.takumalee.simplematerialpager.R;
 import com.github.takumalee.simplematerialpager.adapter.SimpleMaterialPagerFragmentAdapter;
 import com.github.takumalee.simplematerialpager.manager.MaterialFragmentManager;
@@ -89,12 +88,18 @@ public class SimpleMaterialPagerView extends SimpleMaterialBarView {
         tabs.setViewPager(viewPager);
     }
 
+    @Override
     public void changeTextColor(int newColor) {
         tabs.setTextColor(newColor);
-        if (isNeedActionBar) changeTextColor(newColor);
+        if (isNeedActionBar) super.changeTextColor(newColor);
     }
 
-    public void changeAllColor(int newColor) {
+    public void changePrimaryTitleColor(int newColor) {
+        changeTextColor(newColor);
+        changeIndicatorColor(newColor);
+    }
+
+    public void changeTopicColor(int newColor) {
         tabs.setBackgroundColor(newColor);
         if (isNeedActionBar) super.changeBarColor(newColor);
     }
