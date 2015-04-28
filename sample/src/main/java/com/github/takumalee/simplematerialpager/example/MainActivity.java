@@ -1,64 +1,78 @@
 package com.github.takumalee.simplematerialpager.example;
 
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
-import com.github.takumalee.simplematerialpager.example.fragment.SuperAwesomeCardFragment;
-import com.github.takumalee.simplematerialpager.view.SimpleMaterialPagerView;
+import com.github.takumalee.simplematerialpager.example.activity.TabTextActivity;
 
 
 public class MainActivity extends ActionBarActivity {
 
-    RelativeLayout relativeLayout;
-    private SimpleMaterialPagerView mPagerView;
+    private RelativeLayout relativeLayout;
+    private ListView listView;
+    private SampleAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         relativeLayout = (RelativeLayout) findViewById(R.id.relative_Main);
-        mPagerView = new SimpleMaterialPagerView(this);
-        mPagerView.setFitsSystemWindows(false);
-        mPagerView.createNewPage("1", SuperAwesomeCardFragment.newInstance(1));
-        mPagerView.createNewPage("2", SuperAwesomeCardFragment.newInstance(2));
-//        mPagerView.createNewPage("3", SuperAwesomeCardFragment.newInstance(3));
-//        mPagerView.createNewPage("4", SuperAwesomeCardFragment.newInstance(4));
-        mPagerView.setMaterialPagerAdapter();
-        mPagerView.changePrimaryTitleColor(Color.WHITE);
-        mPagerView.changeTopicColor(getResources().getColor(android.R.color.holo_blue_bright));
-        mPagerView.changeStatusBarColor(getResources().getColor(android.R.color.holo_blue_bright));
-        mPagerView.getToolbar().setTitleTextColor(getResources().getColor(android.R.color.white));
-        relativeLayout.addView(mPagerView);
-//        createNewPage("1", SuperAwesomeCardFragment.newInstance(1));
-//        createNewPage("2", SuperAwesomeCardFragment.newInstance(2));
-//        createNewPage("3", SuperAwesomeCardFragment.newInstance(3));
-//        createNewPage("4", SuperAwesomeCardFragment.newInstance(4));
-//        setMaterialPagerAdapter();
-//        getFrameContainer().addView(new View(this));
+        listView = new ListView(this);
+        adapter = new SampleAdapter();
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 0:
+                        startActivity(new Intent(MainActivity.this, TabTextActivity.class));
+                        break;
+                    default:
+                        startActivity(new Intent(MainActivity.this, TabTextActivity.class));
+                        break;
+                }
+            }
+        });
+        relativeLayout.addView(listView);
     }
 
+    public String[] SAMPLES = {
+            "Tab Text Sample"
+    };
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
+    private class SampleAdapter extends BaseAdapter {
+
+        @Override
+        public int getCount() {
+            return SAMPLES.length;
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_single_text, null);
+            TextView textView = (TextView) view.findViewById(R.id.textView_SingleText_Adapter);
+            textView.setText(SAMPLES[position]);
+            return view;
+        }
+    }
+
 }
