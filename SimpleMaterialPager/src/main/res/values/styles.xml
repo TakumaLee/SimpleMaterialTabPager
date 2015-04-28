@@ -7,9 +7,14 @@
         <item name="android:actionBarStyle">@style/ToolBarTheme</item>
         <item name="android:fitsSystemWindows">true</item>
         <item name="android:windowActionBarOverlay">true</item>
+        <!--<item name="android:textColorPrimary">@android:color/white</item>-->
     </style>
 
     <style name="ToolBarTheme" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:titleTextStyle">@style/ToolBarTextTheme</item>
+    </style>
+
+    <style name="ToolBarTextTheme" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@android:color/white</item>
     </style>
 

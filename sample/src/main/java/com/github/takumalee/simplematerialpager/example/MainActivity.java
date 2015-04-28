@@ -1,5 +1,6 @@
 package com.github.takumalee.simplematerialpager.example;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.RelativeLayout;
@@ -25,8 +26,10 @@ public class MainActivity extends ActionBarActivity {
 //        mPagerView.createNewPage("3", SuperAwesomeCardFragment.newInstance(3));
 //        mPagerView.createNewPage("4", SuperAwesomeCardFragment.newInstance(4));
         mPagerView.setMaterialPagerAdapter();
+        mPagerView.getTabs().setTextColor(Color.WHITE);
         mPagerView.changeAllColor(getResources().getColor(android.R.color.holo_blue_bright));
         mPagerView.changeStatusBarColor(getResources().getColor(android.R.color.holo_blue_bright));
+        mPagerView.getToolbar().setTitleTextColor(getResources().getColor(android.R.color.white));
         relativeLayout.addView(mPagerView);
 //        createNewPage("1", SuperAwesomeCardFragment.newInstance(1));
 //        createNewPage("2", SuperAwesomeCardFragment.newInstance(2));

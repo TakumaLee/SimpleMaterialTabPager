@@ -1,8 +1,13 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="MaterialTheme">
         <!-- Customize your theme here. -->
+        <item name="android:textColorPrimary">@android:color/white</item>
+    </style>
+    
+    <style name="TabTheme" parent="Base.Widget.AppCompat.ActionBar.TabText">
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
 </resources>
