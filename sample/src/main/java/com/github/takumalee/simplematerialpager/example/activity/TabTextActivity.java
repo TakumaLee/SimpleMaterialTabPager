@@ -1,8 +1,8 @@
 package com.github.takumalee.simplematerialpager.example.activity;
 
 import android.graphics.Color;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.RelativeLayout;
@@ -11,7 +11,7 @@ import com.github.takumalee.simplematerialpager.example.R;
 import com.github.takumalee.simplematerialpager.example.fragment.SuperAwesomeCardFragment;
 import com.github.takumalee.simplematerialpager.view.SimpleMaterialPagerView;
 
-public class TabTextActivity extends ActionBarActivity {
+public class TabTextActivity extends AppCompatActivity {
 
     private RelativeLayout relativeLayout;
     private SimpleMaterialPagerView mPagerView;
