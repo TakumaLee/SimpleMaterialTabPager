@@ -1,1 +1,1 @@
-include ':sample', ':SimpleMaterialPager'
+include ':sample', ':SimpleMaterialTabPager'

@@ -5,12 +5,12 @@
 
 ## Dependencies
 ```gradle
-	compile 'com.github.takumalee:SimpleMaterialPager:1.0.4'
+	compile 'com.github.takumalee:SimpleMaterialPager:1.1.0'
 ```
 
 ## Usage
 
-1. [`Material Pager no Drawer`](https://github.com/TakumaMochizuki/SimpleMaterialPager#material-pager-no-drawer)
+1. [`Material Pager`](https://github.com/TakumaMochizuki/SimpleMaterialPager#material-pager-no-drawer)
 2. [`Material simple toolbar`](https://github.com/TakumaMochizuki/SimpleMaterialPager#material-simple-toolbar)
 
 

@@ -20,6 +20,18 @@
             android:name=".activity.TabTextActivity"
             android:label="@string/title_activity_tab_text" >
         </activity>
+        <activity
+            android:name=".activity.TabNoActionBarActivity"
+            android:label="@string/title_activity_tab_no_action_bar" >
+        </activity>
+        <activity
+            android:name=".activity.CustomTabActivity"
+            android:label="@string/title_activity_custom_tab" >
+        </activity>
+        <activity
+            android:name=".activity.IconSampleActivity"
+            android:label="@string/title_activity_icon_sample" >
+        </activity>
     </application>
 
 </manifest>
