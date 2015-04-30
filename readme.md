@@ -19,7 +19,7 @@ dependencies {
 
 ### Use Builder Pattern
 #### create section
-```
+```java
 mPagerView = new SimpleMaterialTabPagerView.Builder()
                 .addSection("1", SuperAwesomeCardFragment.newInstance(1))
                 .addSection("2", SuperAwesomeCardFragment.newInstance(2))
@@ -29,7 +29,7 @@ mPagerView = new SimpleMaterialTabPagerView.Builder()
 
 #### Function
 
-```
+```java
 public Builder addSection(String title, View view)
 
 public Builder addSection(String title, Fragment fragment)
