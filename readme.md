@@ -1,60 +1,13 @@
-# Simple to create Material Pager
+# Simple to create Material Tab with Pager
 ![](http://i.imgur.com/C734q5F.png)
 
 # How to use
 
 ## Dependencies
 ```gradle
-	compile 'com.github.takumalee:SimpleMaterialPager:1.1.0'
+	compile 'com.github.takumalee:SimpleMaterialTabPager:1.0.0'
 ```
 
-## Usage
-
-1. [`Material Pager`](https://github.com/TakumaMochizuki/SimpleMaterialPager#material-pager-no-drawer)
-2. [`Material simple toolbar`](https://github.com/TakumaMochizuki/SimpleMaterialPager#material-simple-toolbar)
-
-
-### Material Pager no Drawer
-```
-	RelativeLayout relativeLayout;
-   	private SimpleMaterialPagerView mPagerView;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        relativeLayout = (RelativeLayout) findViewById(R.id.relative_Main);
-
-        mPagerView = new SimpleMaterialPagerView(this);
-        mPagerView.createNewPage("1", SuperAwesomeCardFragment.newInstance(1));
-        mPagerView.createNewPage("2", SuperAwesomeCardFragment.newInstance(2));
-        mPagerView.createNewPage("3", SuperAwesomeCardFragment.newInstance(3));
-        mPagerView.createNewPage("4", SuperAwesomeCardFragment.newInstance(4));
-        mPagerView.setMaterialPagerAdapter();
-        
-		mPagerView.changeColor(getResources().getColor(android.R.color.holo_red_light));
-
-        relativeLayout.addView(mPagerView);
-
-    }
-```
-
-### Material simple toolbar
-```
-
-    RelativeLayout relativeLayout;
-    private SimpleMaterialBarView mPagerView;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        relativeLayout = (RelativeLayout) findViewById(R.id.relative_Main);
-        mPagerView.changeColor(getResources().getColor(android.R.color.holo_red_light));
-
-        relativeLayout.addView(mPagerView);
-    }
-```
 
 ## Default Tabs Customization
 
