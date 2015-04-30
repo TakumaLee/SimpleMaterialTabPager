@@ -23,6 +23,7 @@ public class CustomTabActivity extends AppCompatActivity {
         setContentView(R.layout.activity_custom_tab);
         relativeLayout = (RelativeLayout) findViewById(R.id.relative_CustomTab);
         mPagerView = new SimpleMaterialTabPagerView.Builder()
+                .enableActionBar()
                 .addSection(MainActivity.getCustomTab(this, 0), SuperAwesomeCardFragment.newInstance(1))
                 .addSection(MainActivity.getCustomTab(this, 1), SuperAwesomeCardFragment.newInstance(2))
                 .addSection(MainActivity.getCustomTab(this, 2), SuperAwesomeCardFragment.newInstance(3))

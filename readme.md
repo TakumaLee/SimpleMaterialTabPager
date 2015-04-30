@@ -3,9 +3,16 @@
 
 # How to use
 
+It requires 14+ API and android support v7 (Toolbar)
+
 ## Dependencies
 ```gradle
-	compile 'com.github.takumalee:SimpleMaterialTabPager:1.0.0'
+repositories {
+	jcenter()
+}
+dependencies {
+    compile 'com.github.takumalee:SimpleMaterialTabPager:1.0.1'
+}
 ```
 
 

@@ -23,6 +23,7 @@ public class IconSampleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_icon_sample);
         relativeLayout = (RelativeLayout) findViewById(R.id.relative_IconTab);
         mPagerView = new SimpleMaterialTabPagerView.Builder()
+                .enableActionBar()
                 .addSection(MainActivity.getTabIconRes(0), SuperAwesomeCardFragment.newInstance(1))
                 .addSection(MainActivity.getTabIconRes(1), SuperAwesomeCardFragment.newInstance(2))
                 .addSection(MainActivity.getTabIconRes(2), SuperAwesomeCardFragment.newInstance(3))

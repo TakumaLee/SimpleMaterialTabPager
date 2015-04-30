@@ -35,7 +35,7 @@ public class SimpleMaterialTabPagerView extends SimpleMaterialBarView {
     private Drawable oldBackground = null;
 
     private int currentColor;
-    private boolean isNeedActionBar = true;
+    private boolean isNeedActionBar = false;
     private MaterialFragmentManager mFManager = new MaterialFragmentManager();
 
     private SimpleMaterialTabPagerView(Context context, Builder builder) {
