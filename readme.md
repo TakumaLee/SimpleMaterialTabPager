@@ -11,7 +11,7 @@ repositories {
 	jcenter()
 }
 dependencies {
-    compile 'com.github.takumalee:SimpleMaterialTabPager:1.0.2'
+    compile 'com.github.takumalee:SimpleMaterialTabPager:1.0.3'
 }
 ```
 
@@ -27,14 +27,12 @@ dependencies {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab_no_action_bar);
         relativeLayout = (RelativeLayout) findViewById(R.id.relative_TabNoActionBarSample);
-        mPagerView = new SimpleMaterialTabPagerView.Builder()
+        mPagerView = new SimpleMaterialTabPagerView.Builder(MTP.DEFAULT)
+                .enableActionBar()
                 .addSection("1", SuperAwesomeCardFragment.newInstance(1))
                 .addSection("2", SuperAwesomeCardFragment.newInstance(2))
-                .disableActionBar()
                 .build(this);
         mPagerView.setFitsSystemWindows(false);
-
-        mPagerView.setMaterialPagerAdapter();
         mPagerView.changePrimaryTitleColor(Color.WHITE);
         mPagerView.changeTopicColor(getResources().getColor(android.R.color.holo_blue_bright));
         mPagerView.changeStatusBarColor(getResources().getColor(android.R.color.holo_blue_bright));
