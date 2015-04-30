@@ -1,7 +1,7 @@
 # Simple to create Material Tab with Pager
 ![](http://i.imgur.com/C734q5F.png)
 
-# How to use
+# How to import
 
 It requires 14+ API and android support v7 (Toolbar)
 
@@ -11,9 +11,37 @@ repositories {
 	jcenter()
 }
 dependencies {
-    compile 'com.github.takumalee:SimpleMaterialTabPager:1.0.1'
+    compile 'com.github.takumalee:SimpleMaterialTabPager:1.0.2'
 }
 ```
+
+# How to use
+
+### Use Builder Pattern
+#### create section
+```
+mPagerView = new SimpleMaterialTabPagerView.Builder()
+                .addSection("1", SuperAwesomeCardFragment.newInstance(1))
+                .addSection("2", SuperAwesomeCardFragment.newInstance(2))
+                .disableActionBar()
+                .build(this);
+```
+
+#### Function
+
+```
+public Builder addSection(String title, View view)
+
+public Builder addSection(String title, Fragment fragment)
+
+public Builder addSection(View customTabView, View view)
+
+public Builder addSection(View customTabView, Fragment fragment)
+
+public Builder addSection(int drawableId, View view)
+
+public Builder addSection(int drawableId, Fragment fragment)
+``` 
 
 
 ## Default Tabs Customization
