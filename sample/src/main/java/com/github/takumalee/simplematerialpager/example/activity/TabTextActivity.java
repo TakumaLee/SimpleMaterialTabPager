@@ -22,8 +22,8 @@ public class TabTextActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tab_text);
         relativeLayout = (RelativeLayout) findViewById(R.id.relative_TabTextSample);
         mPagerView = new SimpleMaterialTabPagerView.Builder()
-                .addNewPage("1", SuperAwesomeCardFragment.newInstance(1))
-                .addNewPage("2", SuperAwesomeCardFragment.newInstance(2))
+                .addSection("1", SuperAwesomeCardFragment.newInstance(1))
+                .addSection("2", SuperAwesomeCardFragment.newInstance(2))
                 .build(this);
         mPagerView.setFitsSystemWindows(false);
 //        mPagerView.createNewPage("3", SuperAwesomeCardFragment.newInstance(3));

@@ -22,8 +22,8 @@ public class TabNoActionBarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tab_no_action_bar);
         relativeLayout = (RelativeLayout) findViewById(R.id.relative_TabNoActionBarSample);
         mPagerView = new SimpleMaterialTabPagerView.Builder()
-                .addNewPage("1", SuperAwesomeCardFragment.newInstance(1))
-                .addNewPage("2", SuperAwesomeCardFragment.newInstance(2))
+                .addSection("1", SuperAwesomeCardFragment.newInstance(1))
+                .addSection("2", SuperAwesomeCardFragment.newInstance(2))
                 .disableActionBar()
                 .build(this);
         mPagerView.setFitsSystemWindows(false);

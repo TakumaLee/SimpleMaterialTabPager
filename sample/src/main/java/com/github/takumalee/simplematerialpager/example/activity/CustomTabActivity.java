@@ -23,9 +23,9 @@ public class CustomTabActivity extends AppCompatActivity {
         setContentView(R.layout.activity_custom_tab);
         relativeLayout = (RelativeLayout) findViewById(R.id.relative_CustomTab);
         mPagerView = new SimpleMaterialTabPagerView.Builder()
-                .addNewPage(MainActivity.getCustomTab(this, 0), SuperAwesomeCardFragment.newInstance(1))
-                .addNewPage(MainActivity.getCustomTab(this, 1), SuperAwesomeCardFragment.newInstance(2))
-                .addNewPage(MainActivity.getCustomTab(this, 2), SuperAwesomeCardFragment.newInstance(3))
+                .addSection(MainActivity.getCustomTab(this, 0), SuperAwesomeCardFragment.newInstance(1))
+                .addSection(MainActivity.getCustomTab(this, 1), SuperAwesomeCardFragment.newInstance(2))
+                .addSection(MainActivity.getCustomTab(this, 2), SuperAwesomeCardFragment.newInstance(3))
                 .build(this);
         mPagerView.setFitsSystemWindows(false);
 //        mPagerView.createNewPage("3", SuperAwesomeCardFragment.newInstance(3));

@@ -149,32 +149,32 @@ public class SimpleMaterialTabPagerView extends SimpleMaterialBarView {
             return this;
         }
 
-        public Builder addNewPage(String title, View view) {
+        public Builder addSection(String title, View view) {
             mFManager.createNewInstance(title, view);
             return this;
         }
 
-        public Builder addNewPage(String title, Fragment fragment) {
+        public Builder addSection(String title, Fragment fragment) {
             mFManager.createNewInstance(title, fragment);
             return this;
         }
 
-        public Builder addNewPage(View customTabView, View view) {
+        public Builder addSection(View customTabView, View view) {
             mFManager.createNewInstance(customTabView, view);
             return this;
         }
 
-        public Builder addNewPage(View customTabView, Fragment fragment) {
+        public Builder addSection(View customTabView, Fragment fragment) {
             mFManager.createNewInstance(customTabView, fragment);
             return this;
         }
 
-        public Builder addNewPage(int drawableId, View view) {
+        public Builder addSection(int drawableId, View view) {
             mFManager.createNewInstance(drawableId, view);
             return this;
         }
 
-        public Builder addNewPage(int drawableId, Fragment fragment) {
+        public Builder addSection(int drawableId, Fragment fragment) {
             mFManager.createNewInstance(drawableId, fragment);
             return this;
         }
