@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import com.github.takumalee.simplematerialpager.example.MainActivity;
 import com.github.takumalee.simplematerialpager.example.R;
 import com.github.takumalee.simplematerialpager.example.fragment.SuperAwesomeCardFragment;
+import com.github.takumalee.simplematerialtabpager.view.MTP;
 import com.github.takumalee.simplematerialtabpager.view.SimpleMaterialTabPagerView;
 
 public class IconSampleActivity extends AppCompatActivity {
@@ -22,7 +23,7 @@ public class IconSampleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_icon_sample);
         relativeLayout = (RelativeLayout) findViewById(R.id.relative_IconTab);
-        mPagerView = new SimpleMaterialTabPagerView.Builder()
+        mPagerView = new SimpleMaterialTabPagerView.Builder(MTP.ICON)
                 .enableActionBar()
                 .addSection(MainActivity.getTabIconRes(0), SuperAwesomeCardFragment.newInstance(1))
                 .addSection(MainActivity.getTabIconRes(1), SuperAwesomeCardFragment.newInstance(2))
@@ -31,7 +32,6 @@ public class IconSampleActivity extends AppCompatActivity {
         mPagerView.setFitsSystemWindows(false);
 //        mPagerView.createNewPage("3", SuperAwesomeCardFragment.newInstance(3));
 //        mPagerView.createNewPage("4", SuperAwesomeCardFragment.newInstance(4));
-        mPagerView.setIconMaterialTabAdapter(getSupportFragmentManager());
         mPagerView.changePrimaryTitleColor(Color.WHITE);
         mPagerView.changeTopicColor(getResources().getColor(android.R.color.holo_blue_bright));
         mPagerView.changeStatusBarColor(getResources().getColor(android.R.color.holo_blue_bright));
