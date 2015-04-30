@@ -20,11 +20,27 @@ dependencies {
 ### Use Builder Pattern
 #### create section
 ```java
-mPagerView = new SimpleMaterialTabPagerView.Builder()
+	private SimpleMaterialTabPagerView mPagerView;
+
+	@Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_tab_no_action_bar);
+        relativeLayout = (RelativeLayout) findViewById(R.id.relative_TabNoActionBarSample);
+        mPagerView = new SimpleMaterialTabPagerView.Builder()
                 .addSection("1", SuperAwesomeCardFragment.newInstance(1))
                 .addSection("2", SuperAwesomeCardFragment.newInstance(2))
                 .disableActionBar()
                 .build(this);
+        mPagerView.setFitsSystemWindows(false);
+
+        mPagerView.setMaterialPagerAdapter();
+        mPagerView.changePrimaryTitleColor(Color.WHITE);
+        mPagerView.changeTopicColor(getResources().getColor(android.R.color.holo_blue_bright));
+        mPagerView.changeStatusBarColor(getResources().getColor(android.R.color.holo_blue_bright));
+        mPagerView.getToolbar().setTitleTextColor(getResources().getColor(android.R.color.white));
+        relativeLayout.addView(mPagerView);
+    }
 ```
 
 #### Function
