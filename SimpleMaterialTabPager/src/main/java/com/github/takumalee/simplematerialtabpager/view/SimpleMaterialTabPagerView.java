@@ -139,7 +139,7 @@ public class SimpleMaterialTabPagerView extends SimpleMaterialBarView {
 
         private MTP adapterType = MTP.DEFAULT;
 
-        private boolean isNeedActionBar = true;
+        private boolean isNeedActionBar = false;
 
         private boolean isParetFragment = false;
 
