@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.github.takumalee.simplematerialpager"
-        minSdkVersion 14
+        minSdkVersion 15
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
@@ -23,6 +23,6 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.1.0'
     compile 'com.android.support:cardview-v7:22.1.0'
-    compile project(':SimpleMaterialTabPager')
-//    compile 'com.github.takumalee:SimpleMaterialTabPager:1.0.0'
+//    compile project(':SimpleMaterialTabPager')
+    compile 'com.github.takumalee:SimpleMaterialTabPager:1.0.4'
 }

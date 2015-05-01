@@ -3,7 +3,7 @@
 
 # How to import
 
-It requires 14+ API and android support v7 (Toolbar)
+It requires 15+ API and android support v7 (Toolbar)
 
 ## Dependencies
 ```gradle
@@ -11,7 +11,7 @@ repositories {
 	jcenter()
 }
 dependencies {
-    compile 'com.github.takumalee:SimpleMaterialTabPager:1.0.3'
+    compile 'com.github.takumalee:SimpleMaterialTabPager:1.0.4'
 }
 ```
 
