@@ -33,7 +33,7 @@ dependencies {
                 .addSection("1", SuperAwesomeCardFragment.newInstance(1))
                 .addSection("2", SuperAwesomeCardFragment.newInstance(2))
                 .build(this);
-        mPagerView.setFitsSystemWindows(false);
+
         mPagerView.changePrimaryTitleColor(Color.WHITE);
         mPagerView.changeTopicColor(getResources().getColor(android.R.color.holo_blue_bright));
         mPagerView.changeStatusBarColor(getResources().getColor(android.R.color.holo_blue_bright));
