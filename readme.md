@@ -1,5 +1,4 @@
 # Simple to create Material Tab with Pager
-![](http://i.imgur.com/C734q5F.png)
 
 # How to import
 
@@ -56,6 +55,8 @@ public Builder addSection(int drawableId, View view)
 
 public Builder addSection(int drawableId, Fragment fragment)
 ``` 
+
+![](http://i.imgur.com/C734q5F.png)
 
 
 ## Default Tabs Customization
