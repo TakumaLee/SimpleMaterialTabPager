@@ -195,6 +195,10 @@ public class SimpleMaterialBarView extends LinearLayout {
         return oldBackground;
     }
 
+    public View getParentContainer() {
+        return parent;
+    }
+
     protected FragmentManager getContextFragmentManager() {
         switch (type) {
             case TYPE.ACTION_BAR:

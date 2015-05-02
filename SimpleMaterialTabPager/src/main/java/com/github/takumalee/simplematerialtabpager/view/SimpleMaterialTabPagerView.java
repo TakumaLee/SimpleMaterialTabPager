@@ -64,6 +64,7 @@ public class SimpleMaterialTabPagerView extends SimpleMaterialBarView {
 
         if (!isNeedActionBar) {
             getToolbar().setVisibility(GONE);
+            getParentContainer().setFitsSystemWindows(false);
         }
 
         if (adapterType == MTP.DEFAULT)
@@ -100,17 +101,17 @@ public class SimpleMaterialTabPagerView extends SimpleMaterialBarView {
     @Override
     public void changeTextColor(int newColor) {
         tabs.setTextColor(newColor);
-        if (isNeedActionBar) super.changeTextColor(newColor);
+        super.changeTextColor(newColor);
     }
 
-    public void changePrimaryTitleColor(int newColor) {
+    public void changeTabTextWithIndicatorColor(int newColor) {
         changeTextColor(newColor);
         changeIndicatorColor(newColor);
     }
 
-    public void changeTopicColor(int newColor) {
+    public void changePrimaryColor(int newColor) {
         tabs.setBackgroundColor(newColor);
-        if (isNeedActionBar) super.changeBarColor(newColor);
+        super.changeBarColor(newColor);
     }
 
     public void changeStatusBarColor(int newColor) {
