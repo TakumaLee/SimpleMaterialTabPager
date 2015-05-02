@@ -1,5 +1,7 @@
 # Simple to create Material Tab with Pager
 
+[App Install](https://play.google.com/store/apps/details?id=com.github.takumalee.simplematerialpager)
+
 # How to import
 
 It requires 15+ API and android support v7 (Toolbar)
