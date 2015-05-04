@@ -112,6 +112,7 @@ public class SimpleMaterialTabPagerView extends SimpleMaterialBarView {
     public void changePrimaryColor(int newColor) {
         tabs.setBackgroundColor(newColor);
         super.changeBarColor(newColor);
+        changeStatusBarColor(newColor);
     }
 
     public void changeStatusBarColor(int newColor) {

@@ -34,9 +34,8 @@ dependencies {
                 .addSection("2", SuperAwesomeCardFragment.newInstance(2))
                 .build(this);
 
-        mPagerView.changePrimaryTitleColor(Color.WHITE);
-        mPagerView.changeTopicColor(getResources().getColor(android.R.color.holo_blue_bright));
-        mPagerView.changeStatusBarColor(getResources().getColor(android.R.color.holo_blue_bright));
+        mPagerView.changeTabTextWithIndicatorColor(Color.WHITE);
+        mPagerView.changePrimaryColor(getResources().getColor(android.R.color.holo_blue_bright));
         mPagerView.getToolbar().setTitleTextColor(getResources().getColor(android.R.color.white));
         relativeLayout.addView(mPagerView);
     }

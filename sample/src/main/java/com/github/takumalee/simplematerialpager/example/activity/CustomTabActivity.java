@@ -32,7 +32,6 @@ public class CustomTabActivity extends AppCompatActivity {
         mPagerView.setFitsSystemWindows(false);
         mPagerView.changeTabTextWithIndicatorColor(Color.WHITE);
         mPagerView.changePrimaryColor(getResources().getColor(android.R.color.holo_blue_bright));
-        mPagerView.changeStatusBarColor(getResources().getColor(android.R.color.holo_blue_bright));
         mPagerView.getToolbar().setTitleTextColor(getResources().getColor(android.R.color.white));
         relativeLayout.addView(mPagerView);
     }
