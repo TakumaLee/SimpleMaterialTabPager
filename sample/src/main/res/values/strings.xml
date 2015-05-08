@@ -8,5 +8,6 @@
     <string name="title_activity_tab_no_action_bar">TabNoActionBarActivity</string>
     <string name="title_activity_custom_tab">CustomTabActivity</string>
     <string name="title_activity_icon_sample">IconSampleActivity</string>
+    <string name="title_activity_xml">XmlActivity</string>
 
 </resources>

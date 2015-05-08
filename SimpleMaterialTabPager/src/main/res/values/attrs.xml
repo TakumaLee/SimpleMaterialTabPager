@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <declare-styleable name="SimpleMaterialTabPager">
+        <attr name="mtpIsNeedActionBar" format="boolean" />
+        <attr name="mtpIndicatorColor" format="color" />
+        <attr name="mtpIndicatorHeight" format="dimension" />
+        <attr name="mtpDividerColor" format="color" />
+        <attr name="mtpDividerWidth" format="dimension" />
+        <attr name="mtpDividerPadding" format="dimension" />
+        <attr name="mtpTabPaddingLeftRight" format="dimension" />
+        <attr name="mtpScrollOffset" format="dimension" />
+        <attr name="mtpTabBackground" format="reference" />
+        <attr name="mtpTabBackgroundColor" format="color" />
+        <attr name="mtpShouldExpand" format="boolean" />
+        <attr name="mtpTextAllCaps" format="boolean" />
+        <attr name="mtpPaddingMiddle" format="boolean" />
+        <attr name="mtpTextColorPrimary" format="color" />
+        <attr name="mtpTextColorSelected" format="color" />
+        <attr name="mtpTextAlpha" format="integer" />
+        <attr name="mtpTextStyle">
+            <flag name="normal" value="0x0" />
+            <flag name="bold" value="0x1" />
+            <flag name="italic" value="0x2" />
+        </attr>
+        <attr name="mtpTextSelectedStyle">
+            <flag name="normal" value="0x0" />
+            <flag name="bold" value="0x1" />
+            <flag name="italic" value="0x2" />
+        </attr>
+    </declare-styleable>
+
     <declare-styleable name="PagerSlidingTabStrip">
         <attr name="pstsIndicatorColor" format="color" />
         <attr name="pstsUnderlineColor" format="color" />

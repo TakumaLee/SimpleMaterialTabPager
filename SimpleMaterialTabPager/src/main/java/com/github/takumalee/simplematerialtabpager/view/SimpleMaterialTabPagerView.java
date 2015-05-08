@@ -2,10 +2,16 @@ package com.github.takumalee.simplematerialtabpager.view;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
+import android.util.AttributeSet;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -43,14 +49,55 @@ public class SimpleMaterialTabPagerView extends SimpleMaterialBarView {
     private MaterialFragmentManager mFManager = new MaterialFragmentManager();
 
     private SimpleMaterialTabPagerView(Context context, Builder builder) {
-        super(context);
-        adapterType = builder.adapterType;
-        mFManager = builder.mFManager;
-        isNeedActionBar = builder.isNeedActionBar;
-        isParentFragment = builder.isParetFragment;
-        fragmentManager = isParentFragment ? builder.fragmentManager : getContextFragmentManager();
+        this(context, null, builder);
+        setAdapter();
+    }
+
+    public SimpleMaterialTabPagerView(Context context, AttributeSet attrs) {
+        this(context, attrs, 0);
+        DisplayMetrics dm = getResources().getDisplayMetrics();
+        tabs.setIndicatorHeight((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, tabs.getIndicatorHeight() / dm.density, dm));
+        tabs.setDividerPadding((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, tabs.getDividerPadding(), dm));
+        tabs.setTabPaddingLeftRight((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, tabs.getTabPaddingLeftRight(), dm));
+        tabs.setDividerWidth((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, tabs.getDividerWidth(), dm));
+        tabs.setTextSize((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, tabs.getTextSize() / dm.density, dm));
+
+        // get custom attrs
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SimpleMaterialTabPager);
+        isNeedActionBar = a.getBoolean(R.styleable.SimpleMaterialTabPager_mtpIsNeedActionBar, false);
+        tabs.setIndicatorColor(a.getColor(R.styleable.SimpleMaterialTabPager_mtpIndicatorColor, tabs.getIndicatorColor()));
+        tabs.setDividerColor(a.getColor(R.styleable.SimpleMaterialTabPager_mtpDividerColor, tabs.getDividerColor()));
+        tabs.setDividerWidth(a.getDimensionPixelSize(R.styleable.SimpleMaterialTabPager_mtpDividerWidth, tabs.getDividerWidth()));
+        tabs.setIndicatorHeight(a.getDimensionPixelSize(R.styleable.SimpleMaterialTabPager_mtpIndicatorHeight, tabs.getIndicatorHeight()));
+        tabs.setDividerPadding(a.getDimensionPixelSize(R.styleable.SimpleMaterialTabPager_mtpDividerPadding, tabs.getDividerPadding()));
+        tabs.setTabPaddingLeftRight(a.getDimensionPixelSize(R.styleable.SimpleMaterialTabPager_mtpTabPaddingLeftRight, tabs.getTabPaddingLeftRight()));
+        tabs.setBackgroundResource(a.getResourceId(R.styleable.SimpleMaterialTabPager_mtpTabBackground, tabs.getTabBackground()));
+        tabs.setBackgroundColor(a.getColor(R.styleable.SimpleMaterialTabPager_mtpTabBackgroundColor, Color.WHITE));
+        tabs.setShouldExpand(a.getBoolean(R.styleable.SimpleMaterialTabPager_mtpShouldExpand, tabs.getShouldExpand()));
+        tabs.setScrollOffset(a.getDimensionPixelSize(R.styleable.SimpleMaterialTabPager_mtpScrollOffset, tabs.getScrollOffset()));
+        tabs.setAllCaps(a.getBoolean(R.styleable.SimpleMaterialTabPager_mtpTextAllCaps, tabs.isTextAllCaps()));
+        tabs.setIsPaddingMiddle(a.getBoolean(R.styleable.SimpleMaterialTabPager_mtpPaddingMiddle, tabs.isPaddingMiddle()));
+        tabs.setTabTypefaceStyle(a.getInt(R.styleable.SimpleMaterialTabPager_mtpTextStyle, Typeface.NORMAL));
+        tabs.setTabTypefaceSelectedStyle(a.getInt(R.styleable.SimpleMaterialTabPager_mtpTextSelectedStyle, Typeface.NORMAL));
+        tabs.setTabTextColorSelected(a.getColorStateList(R.styleable.SimpleMaterialTabPager_mtpTextColorSelected));
+        tabs.setTextAlpha(a.getInt(R.styleable.SimpleMaterialTabPager_mtpTextAlpha, tabs.getTextAlpha()));
+        tabs.setTextColor(a.getColor(R.styleable.SimpleMaterialTabPager_mtpTextColorPrimary, tabs.getTabTextColor().getDefaultColor()));
+        a.recycle();
+
+        initActionBar();
+    }
+
+    public SimpleMaterialTabPagerView(Context context, AttributeSet attrs, Builder builder) {
+        this(context, attrs, 0);
+        setBuilder(builder);
+        initActionBar();
+    }
+
+    public SimpleMaterialTabPagerView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
         initView();
     }
+
 
     private void initView() {
         this.setOrientation(VERTICAL);
@@ -61,31 +108,48 @@ public class SimpleMaterialTabPagerView extends SimpleMaterialBarView {
         viewPager = (ViewPager) view.findViewById(R.id.pager);
 
         getFrameLayout().addView(view);
+    }
 
+    private void setAdapter() {
+        if (adapterType == MTP.DEFAULT)
+            setMaterialPagerAdapter(fragmentManager);
+        else if (adapterType == MTP.ICON)
+            setIconMaterialTabAdapter(fragmentManager);
+        else if (adapterType == MTP.CUSTOM)
+            setCustomMaterialTabAdapter(fragmentManager);
+    }
+
+    public void commit(Builder builder) {
+        setBuilder(builder);
+        setAdapter();
+    }
+
+    private void setBuilder(Builder builder) {
+        adapterType = builder.adapterType;
+        mFManager = builder.mFManager;
+        isNeedActionBar = builder.isNeedActionBar;
+        isParentFragment = builder.isParetFragment;
+        fragmentManager = isParentFragment ? builder.fragmentManager : getContextFragmentManager();
+    }
+
+    private void initActionBar() {
         if (!isNeedActionBar) {
             getToolbar().setVisibility(GONE);
             getParentContainer().setFitsSystemWindows(false);
         }
-
-        if (adapterType == MTP.DEFAULT)
-                setMaterialPagerAdapter(fragmentManager);
-        else if (adapterType == MTP.ICON)
-                setIconMaterialTabAdapter(fragmentManager);
-        else if (adapterType == MTP.CUSTOM)
-                setCustomMaterialTabAdapter(fragmentManager);
     }
 
-    public void setMaterialPagerAdapter(FragmentManager fm) {
+    private void setMaterialPagerAdapter(FragmentManager fm) {
         adapter = new BaseMaterialTabFragmentAdapter(fm);
         setPagerAdapter();
     }
 
-    public void setCustomMaterialTabAdapter(FragmentManager fm) {
+    private void setCustomMaterialTabAdapter(FragmentManager fm) {
         adapter = new CustomMaterialMaterialTabFragmentAdapter(fm);
         setPagerAdapter();
     }
 
-    public void setIconMaterialTabAdapter(FragmentManager fm) {
+    private void setIconMaterialTabAdapter(FragmentManager fm) {
         adapter = new IconMaterialTabFragmentAdapter(fm);
         setPagerAdapter();
     }
@@ -96,17 +160,6 @@ public class SimpleMaterialTabPagerView extends SimpleMaterialBarView {
 
         tabs.setShouldExpand(true);
         tabs.setViewPager(viewPager);
-    }
-
-    @Override
-    public void changeTextColor(int newColor) {
-        tabs.setTextColor(newColor);
-        super.changeTextColor(newColor);
-    }
-
-    public void changeTabTextWithIndicatorColor(int newColor) {
-        changeTextColor(newColor);
-        changeIndicatorColor(newColor);
     }
 
     public void changePrimaryColor(int newColor) {
@@ -123,6 +176,21 @@ public class SimpleMaterialTabPagerView extends SimpleMaterialBarView {
 
     public void changeIndicatorColor(int newColor) {
         tabs.setIndicatorColor(newColor);
+    }
+
+    @Override
+    public void changeTextColor(int newColor) {
+        tabs.setTextColor(newColor);
+        super.changeTextColor(newColor);
+    }
+
+    public void changeTabTextWithIndicatorColor(int newColor) {
+        changeTextColor(newColor);
+        changeIndicatorColor(newColor);
+    }
+
+    public void changeTabBackgroundColor(int newColor) {
+        tabs.setBackgroundColor(newColor);
     }
 
     public PagerSlidingTabStrip getTabs() {
@@ -148,6 +216,8 @@ public class SimpleMaterialTabPagerView extends SimpleMaterialBarView {
         private FragmentManager fragmentManager;
 
         private MaterialFragmentManager mFManager = new MaterialFragmentManager();
+
+        private Builder() {}
 
         public Builder(MTP adapterType) {
             this.adapterType = adapterType;

@@ -51,44 +51,38 @@ public class SimpleMaterialBarView extends LinearLayout {
     private Drawable oldBackground = null;
     private int currentColor;
 
-    public SimpleMaterialBarView(Context context) {
-        super(context);
-        this.context = context;
-        if (context instanceof ActionBarActivity) {
-            Log.v(TAG, "ActionBarActivity");
-            initActivity(TYPE.ACTION_BAR);
-        } else if (context instanceof AppCompatActivity) {
-            Log.v(TAG, "AppCompatActivity");
-            initActivity(TYPE.APP_COMPACT);
-        }
-        initView(0);
+    protected SimpleMaterialBarView(Context context) {
+        this(context, null);
     }
 
-    public SimpleMaterialBarView(Context context, int type) {
-        super(context);
-        this.context = context;
-        initActivity(type);
-        initView(0);
-    }
-
-    public SimpleMaterialBarView(Context context, int type, int newColor) {
+    protected SimpleMaterialBarView(Context context, int newColor) {
         super(context);
         this.context = context;
         initView(newColor);
     }
 
-    public SimpleMaterialBarView(Context context, int type, AttributeSet attrs) {
-        super(context, attrs);
+    protected SimpleMaterialBarView(Context context, AttributeSet attrs) {
+        this(context, attrs, 0);
+    }
+
+    protected SimpleMaterialBarView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
         this.context = context;
-        initActivity(type);
+        checkActivityType(context);
         initView(0);
     }
 
-    public SimpleMaterialBarView(Context context, int type, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        this.context = context;
-        initActivity(type);
-        initView(0);
+    private int checkActivityType(Context context) {
+        if (context instanceof ActionBarActivity) {
+            Log.v(TAG, "ActionBarActivity");
+            initActivity(TYPE.ACTION_BAR);
+            return TYPE.ACTION_BAR;
+        } else if (context instanceof AppCompatActivity) {
+            Log.v(TAG, "AppCompatActivity");
+            initActivity(TYPE.APP_COMPACT);
+            return TYPE.APP_COMPACT;
+        }
+        return TYPE.APP_COMPACT;
     }
 
     private void initActivity(int type) {

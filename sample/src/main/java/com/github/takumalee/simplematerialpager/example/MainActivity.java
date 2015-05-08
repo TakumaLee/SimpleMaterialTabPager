@@ -18,6 +18,7 @@ import com.github.takumalee.simplematerialpager.example.activity.CustomTabActivi
 import com.github.takumalee.simplematerialpager.example.activity.IconSampleActivity;
 import com.github.takumalee.simplematerialpager.example.activity.TabNoActionBarActivity;
 import com.github.takumalee.simplematerialpager.example.activity.TabTextActivity;
+import com.github.takumalee.simplematerialpager.example.activity.XmlActivity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -90,6 +91,9 @@ public class MainActivity extends AppCompatActivity {
                     case 3:
                         startActivity(new Intent(MainActivity.this, IconSampleActivity.class));
                         break;
+                    case 4:
+                        startActivity(new Intent(MainActivity.this, XmlActivity.class));
+                        break;
                     default:
                         startActivity(new Intent(MainActivity.this, TabTextActivity.class));
                         break;
@@ -103,7 +107,8 @@ public class MainActivity extends AppCompatActivity {
             "Tab Text Sample",
             "Tab No Action Bar Sample",
             "Tab with Custom",
-            "Tab with Icon"
+            "Tab with Icon",
+            "Tab with xml"
     };
 
     private class SampleAdapter extends BaseAdapter {

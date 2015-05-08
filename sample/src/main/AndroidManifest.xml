@@ -32,6 +32,10 @@
             android:name=".activity.IconSampleActivity"
             android:label="@string/title_activity_icon_sample" >
         </activity>
+        <activity
+            android:name=".activity.XmlActivity"
+            android:label="@string/title_activity_xml" >
+        </activity>
     </application>
 
 </manifest>
