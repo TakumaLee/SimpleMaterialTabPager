@@ -44,7 +44,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.balysv.materialripple.MaterialRippleLayout;
 import com.github.takumalee.simplematerialtabpager.R;
+import com.github.takumalee.simplematerialtabpager.utils.SystemAttributes;
 
 import java.util.Locale;
 
@@ -62,26 +64,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         public void onTabReselected(int position);
     }
 
-    // @formatter:off
-    private static final int[] ATTRS = new int[]{
-            android.R.attr.textColorPrimary,
-            android.R.attr.textSize,
-            android.R.attr.textColor,
-            android.R.attr.padding,
-            android.R.attr.paddingLeft,
-            android.R.attr.paddingRight,
-    };
-    // @formatter:on
-
     private final PagerAdapterObserver adapterObserver = new PagerAdapterObserver();
-
-    //These indexes must be related with the ATTR array above
-    private static final int TEXT_COLOR_PRIMARY = 0;
-    private static final int TEXT_SIZE_INDEX = 1;
-    private static final int TEXT_COLOR_INDEX = 2;
-    private static final int PADDING_INDEX = 3;
-    private static final int PADDING_LEFT_INDEX = 4;
-    private static final int PADDING_RIGHT_INDEX = 5;
 
     private LinearLayout.LayoutParams defaultTabLayoutParams;
     private LinearLayout.LayoutParams expandedTabLayoutParams;
@@ -116,6 +99,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
     private ColorStateList tabTextColor = null;
     private ColorStateList tabTextColorSelected = null;
     private int textAlpha = 150;
+    private int backgroundAlpha = 200;
 
     private int paddingLeft = 0;
     private int paddingRight = 0;
@@ -134,6 +118,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
     private int lastScrollX = 0;
 
     private int tabBackgroundResId = R.drawable.psts_background_tab;
+    private int tabBackgroundColor = 0;
 
     private Locale locale;
 
@@ -164,17 +149,18 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         tabTextSize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, tabTextSize, dm);
 
         // get system attrs (android:textSize and android:textColor)
-        TypedArray a = context.obtainStyledAttributes(attrs, ATTRS);
-        tabTextSize = a.getDimensionPixelSize(TEXT_SIZE_INDEX, tabTextSize);
-        ColorStateList colorStateList = a.getColorStateList(TEXT_COLOR_INDEX);
-        int textPrimaryColor = a.getColor(TEXT_COLOR_PRIMARY, android.R.color.white);
+        TypedArray a = context.obtainStyledAttributes(attrs, SystemAttributes.ATTRS);
+        tabTextSize = a.getDimensionPixelSize(SystemAttributes.TEXT_SIZE_INDEX, tabTextSize);
+        ColorStateList colorStateList = a.getColorStateList(SystemAttributes.TEXT_COLOR_INDEX);
 
+        int textPrimaryColor = a.getColor(SystemAttributes.TEXT_COLOR_PRIMARY, android.R.color.white);
         underlineColor = textPrimaryColor;
         dividerColor = textPrimaryColor;
         indicatorColor = textPrimaryColor;
-        int padding = a.getDimensionPixelSize(PADDING_INDEX, 0);
-        paddingLeft = padding > 0 ? padding : a.getDimensionPixelSize(PADDING_LEFT_INDEX, 0);
-        paddingRight = padding > 0 ? padding : a.getDimensionPixelSize(PADDING_RIGHT_INDEX, 0);
+
+        int padding = a.getDimensionPixelSize(SystemAttributes.PADDING_INDEX, 0);
+        paddingLeft = padding > 0 ? padding : a.getDimensionPixelSize(SystemAttributes.PADDING_LEFT_INDEX, 0);
+        paddingRight = padding > 0 ? padding : a.getDimensionPixelSize(SystemAttributes.PADDING_RIGHT_INDEX, 0);
         a.recycle();
 
         // get custom attrs
@@ -327,13 +313,18 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
             }
         });
 
-        tabsContainer.addView(tabView, position, shouldExpand ? expandedTabLayoutParams : defaultTabLayoutParams);
+        View component = MaterialRippleLayout.on(tabView)
+                .rippleColor(tabBackgroundColor)
+                .rippleAlpha(backgroundAlpha)
+                .create();
+
+        tabsContainer.addView(component, position, shouldExpand ? expandedTabLayoutParams : defaultTabLayoutParams);
     }
 
     private void updateTabStyles() {
         for (int i = 0; i < tabCount; i++) {
             View v = tabsContainer.getChildAt(i);
-            v.setBackgroundResource(tabBackgroundResId);
+//            v.setBackgroundResource(tabBackgroundColor != 0 ? tabBackgroundColor : tabBackgroundResId);
             v.setPadding(tabPadding, v.getPaddingTop(), tabPadding, v.getPaddingBottom());
 
             if (v instanceof TextView) {
@@ -693,8 +684,12 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         return textAllCaps;
     }
 
-    public ColorStateList getTextColor() {
+    public ColorStateList getTabTextColor() {
         return tabTextColor;
+    }
+
+    public ColorStateList getTabTextColorSelected() {
+        return tabTextColorSelected;
     }
 
     public int getTabBackground() {
@@ -771,13 +766,21 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         this.textAllCaps = textAllCaps;
     }
 
+    public boolean isPaddingMiddle() {
+        return isPaddingMiddle;
+    }
+
+    public void setIsPaddingMiddle(boolean isPaddingMiddle) {
+        this.isPaddingMiddle = isPaddingMiddle;
+    }
+
     public void setTextSize(int textSizePx) {
         this.tabTextSize = textSizePx;
         updateTabStyles();
     }
 
     public void setTextColor(int textColor) {
-        setTabTextColorSelected(textColor);
+        setSelectedTextColor(textColor);
         setTextColor(getColorStateList(Color.argb(textAlpha,
                 Color.red(textColor),
                 Color.green(textColor),
@@ -788,7 +791,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         setTextColor(getColorStateList(textColor));
     }
 
-    public void setTabTextColorSelected(int textColorSelected) {
+    public void setSelectedTextColor(int textColorSelected) {
         this.tabTextColorSelected = getColorStateList(textColorSelected);
     }
 
@@ -801,12 +804,50 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         updateTabStyles();
     }
 
+    public void setTabTextColorSelected(ColorStateList tabTextColorSelected) {
+        this.tabTextColorSelected = tabTextColorSelected;
+        updateTabStyles();
+    }
+
+    public int getTextAlpha() {
+        return textAlpha;
+    }
+
+    public void setTextAlpha(int textAlpha) {
+        this.textAlpha = textAlpha;
+    }
+
     public void setTextColorResource(int resId) {
         setTextColor(getResources().getColor(resId));
     }
 
     public void setTextColorStateListResource(int resId) {
         setTextColor(getResources().getColorStateList(resId));
+    }
+
+    public void setTabBackgroundColor(int color) {
+        tabBackgroundColor = color;
+        updateTabStyles();
+    }
+
+    public int getTabBackgroundColor() {
+        return tabBackgroundColor;
+    }
+
+    public int getTabTypefaceStyle() {
+        return tabTypefaceStyle;
+    }
+
+    public void setTabTypefaceStyle(int tabTypefaceStyle) {
+        this.tabTypefaceStyle = tabTypefaceStyle;
+    }
+
+    public int getTabTypefaceSelectedStyle() {
+        return tabTypefaceSelectedStyle;
+    }
+
+    public void setTabTypefaceSelectedStyle(int tabTypefaceSelectedStyle) {
+        this.tabTypefaceSelectedStyle = tabTypefaceSelectedStyle;
     }
 
     public void setTypeface(Typeface typeface, int style) {
