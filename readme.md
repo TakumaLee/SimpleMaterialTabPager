@@ -41,6 +41,35 @@ dependencies {
     }
 ```
 
+#### Xml
+
+```xml
+<com.github.takumalee.simplematerialtabpager.view.SimpleMaterialTabPagerView
+        android:id="@+id/smtp_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:mtpIsNeedActionBar="true"
+        app:mtpTabBackgroundColor="@color/random" />
+```
+
+#### onCreate()
+
+```java
+private SimpleMaterialTabPagerView mPagerView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_xml);
+        mPagerView = (SimpleMaterialTabPagerView) findViewById(R.id.smtp_pager);
+        // Make adapter to set in pager, and you need to create a new Builder to add section.
+        mPagerView.commit(
+                new SimpleMaterialTabPagerView.Builder(MTP.DEFAULT)
+                        .addSection("1", SuperAwesomeCardFragment.newInstance(1))
+                        .addSection("2", SuperAwesomeCardFragment.newInstance(2)));
+    }
+```
+
 #### Function
 
 ```java
@@ -60,40 +89,6 @@ public Builder addSection(int drawableId, Fragment fragment)
 ![](http://i.imgur.com/C734q5F.png)
 
 
-## Default Tabs Customization
-
-From theme:
-
-* `android:textColorPrimary` value (from your theme) will be applied automatically  to tab's text color , underlineColor, dividerColor and indicatorColor, if any of these values are define in the xml layout.
-
-Notes about some of the native attr:
-
-* `android:textSize` Tab text size
-* `android:textColor` Tab text color
-* `android:paddingLeft` or `android:paddingRight` Layout padding. Only the biggest of both will be applied to each side.
-
-
-Custom attr:
-
- * `pstsIndicatorColor` Color of the sliding indicator
- * `pstsUnderlineColor` Color of the full-width line on the bottom of the view
- * `pstsUnderlineHeight` Height of the full-width line on the bottom of the view
- * `pstsDividerColor` Color of the dividers between tabs
- * `pstsDividerPadding` Top and bottom padding of the dividers
- * `pstsDividerWidth` Stroke width of divider line, defaults to 0
- * `pstsIndicatorHeight`Height of the sliding indicator
- * `pstsTabPaddingLeftRight` Left and right padding of each tab
- * `pstsScrollOffset` Scroll offset of the selected tab
- * `pstsTabBackground` Background drawable of each tab, should be a StateListDrawable
- * `pstsShouldExpand` If set to true, each tab is given the same weight, default false
- * `pstsTextAllCaps` If true, all tab titles will be upper case, default true
- * `pstsPaddingMiddle` If true, the tabs start at the middle of the view (Like Newsstand google app)
- * `pstsTextStyle` Set the text style, default bold
- * `pstsTextSelectedStyle` Set the text style of the selected tab, default bold
- * `pstsTextAlpha` Set the text alpha transparency, default 0.5
- * `pstsTextSelectedAlpha` Set the text alpha transparency of the selected tab, default 1
-
-*Almost all attributes have their respective getters and setters to change them at runtime* , open an issue if you miss any.
 
 # Developed By
 
