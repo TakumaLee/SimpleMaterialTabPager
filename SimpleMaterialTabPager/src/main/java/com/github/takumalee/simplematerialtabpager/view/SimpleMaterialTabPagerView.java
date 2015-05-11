@@ -26,7 +26,7 @@ import com.readystatesoftware.systembartint.SystemBarTintManager;
  * Created by TakumaLee on 15/1/16.
  *
  */
-public class SimpleMaterialTabPagerView extends SimpleMaterialBarView {
+public class SimpleMaterialTabPagerView extends BaseMaterialBarView {
     private static final String TAG = SimpleMaterialTabPagerView.class.getSimpleName();
 
     private LayoutInflater inflater;
