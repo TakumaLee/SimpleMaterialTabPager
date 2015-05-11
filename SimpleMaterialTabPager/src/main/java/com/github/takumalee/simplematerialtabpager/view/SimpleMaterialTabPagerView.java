@@ -193,6 +193,10 @@ public class SimpleMaterialTabPagerView extends BaseMaterialBarView {
         tabs.setBackgroundColor(newColor);
     }
 
+    public void setOnPageChangeListener(ViewPager.OnPageChangeListener listener) {
+        tabs.setOnPageChangeListener(listener);
+    }
+
     public PagerSlidingTabStrip getTabs() {
         return tabs;
     }

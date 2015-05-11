@@ -11,7 +11,7 @@ public class SimpleMaterialBarView extends BaseMaterialBarView {
         super(context);
     }
 
-    protected SimpleMaterialBarView(Context context, int newColor) {
+    public SimpleMaterialBarView(Context context, int newColor) {
         super(context, newColor);
     }
 

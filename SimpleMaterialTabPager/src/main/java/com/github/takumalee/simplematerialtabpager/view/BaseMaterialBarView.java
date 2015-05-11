@@ -58,6 +58,7 @@ public class BaseMaterialBarView extends LinearLayout {
     protected BaseMaterialBarView(Context context, int newColor) {
         super(context);
         this.context = context;
+        checkActivityType(context);
         initView(newColor);
     }
 
