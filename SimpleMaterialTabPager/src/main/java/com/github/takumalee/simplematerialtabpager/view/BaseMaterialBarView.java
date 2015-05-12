@@ -54,6 +54,7 @@ public class BaseMaterialBarView extends LinearLayout {
 
     protected BaseMaterialBarView(Context context) {
         this(context, null);
+        initSystemTintBar();
     }
 
     protected BaseMaterialBarView(Context context, int newColor) {
@@ -76,7 +77,6 @@ public class BaseMaterialBarView extends LinearLayout {
         checkActivityType(context);
         initView();
         setDefaultToobar();
-        initSystemTintBar();
     }
 
     private int checkActivityType(Context context) {
