@@ -46,10 +46,11 @@ public class BaseMaterialBarView extends LinearLayout {
     private Toolbar toolbar;
     private FrameLayout frameLayout;
 
-    private SystemBarTintManager systemBarTintManager;
-
     private Drawable oldBackground = null;
-    private int currentColor;
+
+    protected int currentColor;
+    protected boolean isNeedActionBar = true;
+    protected SystemBarTintManager systemBarTintManager;
 
     protected BaseMaterialBarView(Context context) {
         this(context, null);
@@ -59,7 +60,10 @@ public class BaseMaterialBarView extends LinearLayout {
         super(context);
         this.context = context;
         checkActivityType(context);
-        initView(newColor);
+        initView();
+        setDefaultToobar();
+        initSystemTintBar();
+        changeBarColor(newColor == 0 ? getRandomBackgroundColor() : newColor);
     }
 
     protected BaseMaterialBarView(Context context, AttributeSet attrs) {
@@ -70,7 +74,9 @@ public class BaseMaterialBarView extends LinearLayout {
         super(context, attrs, defStyleAttr);
         this.context = context;
         checkActivityType(context);
-        initView(0);
+        initView();
+        setDefaultToobar();
+        initSystemTintBar();
     }
 
     private int checkActivityType(Context context) {
@@ -99,7 +105,7 @@ public class BaseMaterialBarView extends LinearLayout {
 
     }
 
-    private void initView(int newColor) {
+    private void initView() {
         this.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
         this.setOrientation(VERTICAL);
         inflater = LayoutInflater.from(context);
@@ -108,23 +114,28 @@ public class BaseMaterialBarView extends LinearLayout {
         toolbar = (Toolbar) view.findViewById(R.id.toolbar_materialbar);
         frameLayout = (FrameLayout) view.findViewById(R.id.frameLayout_materialbar);
 
-        switch (type) {
-            case TYPE.ACTION_BAR:
-                this.actionBarActivity.setSupportActionBar(toolbar);
-                break;
-            case TYPE.APP_COMPACT:
-                this.appCompatActivity.setSupportActionBar(toolbar);
-                break;
-        }
+        this.addView(view);
+    }
 
-//        ((ActionBarActivity)context).getSupportActionBar().setDisplayShowHomeEnabled(true);
-//        ((ActionBarActivity)context).getSupportActionBar().setLogo(R.drawable.ic_menu_white);
-
+    private void initSystemTintBar() {
         systemBarTintManager = new SystemBarTintManager((Activity) context);
         systemBarTintManager.setStatusBarTintEnabled(true);
+    }
 
-        changeBarColor(newColor == 0 ? getRandomBackgroundColor() : newColor);
-        this.addView(view);
+    protected void setDefaultToobar() {
+        if (isNeedActionBar) {
+            switch (type) {
+                case TYPE.ACTION_BAR:
+                    this.actionBarActivity.setSupportActionBar(toolbar);
+                    break;
+                case TYPE.APP_COMPACT:
+                    this.appCompatActivity.setSupportActionBar(toolbar);
+                    break;
+            }
+        } else {
+            getToolbar().setVisibility(GONE);
+            getParentContainer().setFitsSystemWindows(false);
+        }
     }
 
     public int getRandomBackgroundColor() {

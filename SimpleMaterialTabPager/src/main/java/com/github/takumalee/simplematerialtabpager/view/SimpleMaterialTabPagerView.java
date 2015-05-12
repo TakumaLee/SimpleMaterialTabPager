@@ -36,14 +36,11 @@ public class SimpleMaterialTabPagerView extends BaseMaterialBarView {
     private ViewPager viewPager;
     private BaseMaterialTabFragmentAdapter adapter;
 
-    private SystemBarTintManager systemBarTintManager;
-
     private Drawable oldBackground = null;
 
     private int currentColor;
 
     private MTP adapterType = MTP.DEFAULT;
-    private boolean isNeedActionBar = false;
     private boolean isParentFragment = false;
     private FragmentManager fragmentManager;
     private MaterialFragmentManager mFManager = new MaterialFragmentManager();
@@ -84,13 +81,13 @@ public class SimpleMaterialTabPagerView extends BaseMaterialBarView {
         tabs.setTextColor(a.getColor(R.styleable.SimpleMaterialTabPager_mtpTextColorPrimary, tabs.getTabTextColor().getDefaultColor()));
         a.recycle();
 
-        initActionBar();
+        setDefaultToobar();
     }
 
     public SimpleMaterialTabPagerView(Context context, AttributeSet attrs, Builder builder) {
         this(context, attrs, 0);
         setBuilder(builder);
-        initActionBar();
+        setDefaultToobar();
     }
 
     public SimpleMaterialTabPagerView(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -132,13 +129,6 @@ public class SimpleMaterialTabPagerView extends BaseMaterialBarView {
         fragmentManager = isParentFragment ? builder.fragmentManager : getContextFragmentManager();
     }
 
-    private void initActionBar() {
-        if (!isNeedActionBar) {
-            getToolbar().setVisibility(GONE);
-            getParentContainer().setFitsSystemWindows(false);
-        }
-    }
-
     private void setMaterialPagerAdapter(FragmentManager fm) {
         adapter = new BaseMaterialTabFragmentAdapter(fm);
         setPagerAdapter();
@@ -164,8 +154,8 @@ public class SimpleMaterialTabPagerView extends BaseMaterialBarView {
 
     public void changePrimaryColor(int newColor) {
         tabs.setBackgroundColor(newColor);
-        super.changeBarColor(newColor);
         changeStatusBarColor(newColor);
+        if (isNeedActionBar) super.changeBarColor(newColor);
     }
 
     public void changeStatusBarColor(int newColor) {
