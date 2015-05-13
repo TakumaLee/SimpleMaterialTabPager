@@ -69,7 +69,7 @@ public class SimpleMaterialTabPagerView extends BaseMaterialBarView {
         tabs.setDividerPadding(a.getDimensionPixelSize(R.styleable.SimpleMaterialTabPager_mtpDividerPadding, tabs.getDividerPadding()));
         tabs.setTabPaddingLeftRight(a.getDimensionPixelSize(R.styleable.SimpleMaterialTabPager_mtpTabPaddingLeftRight, tabs.getTabPaddingLeftRight()));
         tabs.setBackgroundResource(a.getResourceId(R.styleable.SimpleMaterialTabPager_mtpTabBackground, tabs.getTabBackground()));
-        tabs.setBackgroundColor(a.getColor(R.styleable.SimpleMaterialTabPager_mtpTabBackgroundColor, Color.WHITE));
+        tabs.setTabBackgroundColor(a.getColor(R.styleable.SimpleMaterialTabPager_mtpTabBackgroundColor, Color.WHITE));
         tabs.setShouldExpand(a.getBoolean(R.styleable.SimpleMaterialTabPager_mtpShouldExpand, tabs.getShouldExpand()));
         tabs.setScrollOffset(a.getDimensionPixelSize(R.styleable.SimpleMaterialTabPager_mtpScrollOffset, tabs.getScrollOffset()));
         tabs.setAllCaps(a.getBoolean(R.styleable.SimpleMaterialTabPager_mtpTextAllCaps, tabs.isTextAllCaps()));
@@ -153,7 +153,7 @@ public class SimpleMaterialTabPagerView extends BaseMaterialBarView {
     }
 
     public void changePrimaryColor(int newColor) {
-        tabs.setBackgroundColor(newColor);
+        tabs.setTabBackgroundColor(newColor);
         changeStatusBarColor(newColor);
         if (isNeedActionBar) super.changeBarColor(newColor);
     }
@@ -180,7 +180,7 @@ public class SimpleMaterialTabPagerView extends BaseMaterialBarView {
     }
 
     public void changeTabBackgroundColor(int newColor) {
-        tabs.setBackgroundColor(newColor);
+        tabs.setTabBackgroundColor(newColor);
     }
 
     public void setOnPageChangeListener(ViewPager.OnPageChangeListener listener) {

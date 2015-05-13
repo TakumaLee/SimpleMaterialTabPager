@@ -69,6 +69,7 @@ public class BaseMaterialBarView extends LinearLayout {
 
     protected BaseMaterialBarView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
+        setDefaultToobar();
     }
 
     protected BaseMaterialBarView(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -76,7 +77,6 @@ public class BaseMaterialBarView extends LinearLayout {
         this.context = context;
         checkActivityType(context);
         initView();
-        setDefaultToobar();
     }
 
     private int checkActivityType(Context context) {

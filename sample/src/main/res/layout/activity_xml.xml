@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:mtpIsNeedActionBar="true"
-        app:mtpTabBackgroundColor="@color/random">
+        app:mtpTabBackgroundColor="@color/random"
+        app:mtpIndicatorColor="#ffffff">
 
     </com.github.takumalee.simplematerialtabpager.view.SimpleMaterialTabPagerView>
 

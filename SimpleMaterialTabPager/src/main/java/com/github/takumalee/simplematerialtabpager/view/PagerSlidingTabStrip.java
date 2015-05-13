@@ -99,7 +99,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
     private ColorStateList tabTextColor = null;
     private ColorStateList tabTextColorSelected = null;
     private int textAlpha = 150;
-    private float backgroundAlpha = 0.5f;
+    private float backgroundAlpha = 0.1f;
 
     private int paddingLeft = 0;
     private int paddingRight = 0;
@@ -231,7 +231,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
     public void notifyDataSetChanged() {
         tabsContainer.removeAllViews();
         tabCount = pager.getAdapter().getCount();
-        View tabView;
+        View tabView = null;
         for (int i = 0; i < tabCount; i++) {
 
             if (pager.getAdapter() instanceof CustomTabProvider) {
@@ -239,14 +239,20 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 
                 addTab(i, tabView);
             } else if (pager.getAdapter() instanceof IconTabProvider) {
-                addIconTab(i, ((IconTabProvider) pager.getAdapter()).getPageIconResId(i));
+                tabView = addIconTab(i, ((IconTabProvider) pager.getAdapter()).getPageIconResId(i));
             } else {
                 tabView = LayoutInflater.from(getContext()).inflate(R.layout.psts_tab, this, false);
                 CharSequence title = pager.getAdapter().getPageTitle(i);
 
                 addTextTab(i, title.toString(), tabView);
             }
-
+            if (!(pager.getAdapter() instanceof  CustomTabProvider)) {
+                int rippleColor = getPrimaryRGB(tabBackgroundColor);
+                MaterialRippleLayout.on(tabView)
+                        .rippleColor(rippleColor)
+                        .rippleAlpha(backgroundAlpha)
+                        .create();
+            }
         }
 
         updateTabStyles();
@@ -266,6 +272,27 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         });
     }
 
+    private int getPrimaryRGB(int color) {
+        int redColor = Color.red(color);
+        int greenColor = Color.green(color);
+        int blueColor = Color.blue(color);
+        int primaryColor = redColor;
+
+        primaryColor = primaryColor > greenColor ? primaryColor : greenColor;
+        primaryColor = primaryColor > blueColor ? primaryColor : blueColor;
+
+        if (primaryColor == redColor) {
+            redColor += 15;
+        } else if (primaryColor == greenColor) {
+            greenColor += 15;
+        } else if (primaryColor == blueColor) {
+            blueColor += 15;
+        }
+        primaryColor = Color.rgb(redColor, greenColor, blueColor);
+
+        return primaryColor;
+    }
+
     private void addTextTab(final int position, String title, View tabView) {
 
 //        TextView tab = new TextView(getContext());
@@ -281,13 +308,14 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         addTab(position, tabView);
     }
 
-    private void addIconTab(final int position, int resId) {
+    private View addIconTab(final int position, int resId) {
 
         ImageView tab = new ImageView(getContext());
         tab.setImageResource(resId);
         tab.setPadding(0, iconPaddingTop, 0, iconPaddingBottom);
 
         addTab(position, tab);
+        return tab;
 
     }
 
@@ -313,12 +341,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
             }
         });
 
-        View component = MaterialRippleLayout.on(tabView)
-                .rippleColor(tabBackgroundColor)
-                .rippleAlpha(backgroundAlpha)
-                .create();
-
-        tabsContainer.addView(component, position, shouldExpand ? expandedTabLayoutParams : defaultTabLayoutParams);
+        tabsContainer.addView(tabView, position, shouldExpand ? expandedTabLayoutParams : defaultTabLayoutParams);
     }
 
     private void updateTabStyles() {
@@ -826,8 +849,9 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
     }
 
     public void setTabBackgroundColor(int color) {
+        super.setBackgroundColor(color);
         tabBackgroundColor = color;
-        updateTabStyles();
+        if (null != pager) notifyDataSetChanged();
     }
 
     public int getTabBackgroundColor() {
