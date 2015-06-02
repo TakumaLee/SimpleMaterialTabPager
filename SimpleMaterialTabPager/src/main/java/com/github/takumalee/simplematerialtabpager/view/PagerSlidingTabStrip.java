@@ -99,7 +99,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
     private ColorStateList tabTextColor = null;
     private ColorStateList tabTextColorSelected = null;
     private int textAlpha = 150;
-    private float backgroundAlpha = 0.1f;
+    private float backgroundAlpha = 0.4f;
 
     private int paddingLeft = 0;
     private int paddingRight = 0;
@@ -118,7 +118,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
     private int lastScrollX = 0;
 
     private int tabBackgroundResId = R.drawable.psts_background_tab;
-    private int tabBackgroundColor = 0;
+    private int tabBackgroundColor = 0xffffff;
 
     private Locale locale;
 
@@ -247,7 +247,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
                 addTextTab(i, title.toString(), tabView);
             }
             if (!(pager.getAdapter() instanceof  CustomTabProvider)) {
-                int rippleColor = getPrimaryRGB(tabBackgroundColor);
+                int rippleColor = tabBackgroundColor;//getPrimaryRGB(tabBackgroundColor);
                 MaterialRippleLayout.on(tabView)
                         .rippleColor(rippleColor)
                         .rippleAlpha(backgroundAlpha)
@@ -850,7 +850,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 
     public void setTabBackgroundColor(int color) {
         super.setBackgroundColor(color);
-        tabBackgroundColor = color;
+//        tabBackgroundColor = color;
         if (null != pager) notifyDataSetChanged();
     }
 

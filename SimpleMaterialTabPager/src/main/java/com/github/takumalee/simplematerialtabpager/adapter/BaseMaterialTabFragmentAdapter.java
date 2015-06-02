@@ -3,7 +3,6 @@ package com.github.takumalee.simplematerialtabpager.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.view.ViewGroup;
 
 import com.github.takumalee.simplematerialtabpager.entity.MaterialPagerEntity;
 
@@ -42,8 +41,8 @@ public class BaseMaterialTabFragmentAdapter extends FragmentPagerAdapter {
         return mPagerEntities.size();
     }
 
-    @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
-        fragmentManager.beginTransaction().remove((Fragment) object).commit();
-    }
+//    @Override
+//    public void destroyItem(ViewGroup container, int position, Object object) {
+//        fragmentManager.beginTransaction().remove((Fragment) object).commit();
+//    }
 }
