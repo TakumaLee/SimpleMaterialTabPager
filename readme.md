@@ -12,7 +12,7 @@ repositories {
 	jcenter()
 }
 dependencies {
-    compile 'com.github.takumalee:SimpleMaterialTabPager:1.1.6'
+    compile 'com.github.takumalee:SimpleMaterialTabPager:1.2.1'
 }
 ```
 
